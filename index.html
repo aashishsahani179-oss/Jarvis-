@@ -30,6 +30,7 @@ main{max-width:760px;margin:auto;padding:22px 16px 100px}.orb{width:145px;height
 <label>Gemini API Key</label><input id="key" type="password" placeholder="AIza...">
 <button class="ok" onclick="saveKey()">Save Key</button>
 <p class="small">Key केवल आपके browser के local storage में रखी जाती है। इसे किसी के साथ share न करें।</p>
+<hr><label>WhatsApp Contacts</label><input id="cname" placeholder="नाम (जैसे ansh)"><input id="cnum" type="tel" placeholder="नंबर (जैसे 9876543210)"><button class="ok" onclick="addContact()">Add Contact</button><div id="clist"></div>
 <hr><p class="small">अगर key नहीं है, JARVIS फिर भी greeting, time, date, calculator और ऐप खोलने (YouTube, WhatsApp, Maps, VidMate, ChatGPT, Claude) वाले commands चला सकता है।</p>
 </div></div>
 
@@ -46,14 +47,37 @@ const canSpeak=typeof speechSynthesis!=='undefined'&&typeof SpeechSynthesisUtter
 function speak(t){if(!canSpeak)return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang=/[\u0900-\u097F]/.test(t)?'hi-IN':'en-IN';u.rate=.95;speechSynthesis.speak(u)}catch(e){}}
 function stopSpeak(){if(canSpeak)try{speechSynthesis.cancel()}catch(e){}}
 function replayLast(){if(lastReply)speak(lastReply)}
-function openSettings(){document.getElementById('key').value=localStorage.getItem(KEY)||'';document.getElementById('modal').style.display='block'}
+function openSettings(){renderContacts();document.getElementById('key').value=localStorage.getItem(KEY)||'';document.getElementById('modal').style.display='block'}
 function closeSettings(){document.getElementById('modal').style.display='none'}
 function saveKey(){const k=document.getElementById('key').value.trim();if(k)localStorage.setItem(KEY,k);else localStorage.removeItem(KEY);closeSettings();setNotice(k?'✅ Gemini API key saved.':'ℹ️ API key removed.')}
 function setNotice(t){document.getElementById('notice').innerHTML=t}
+const CKEY='jarvis_contacts';
+function getContacts(){try{return JSON.parse(localStorage.getItem(CKEY)||'{}')}catch(e){return {}}}
+function saveContacts(c){try{localStorage.setItem(CKEY,JSON.stringify(c))}catch(e){}}
+function renderContacts(){
+ const c=getContacts(),el=document.getElementById('clist');el.innerHTML='';
+ Object.keys(c).forEach(n=>{
+  const r=document.createElement('div');r.className='small';r.textContent=n+' — '+c[n]+' ';
+  const b=document.createElement('button');b.className='replay';b.textContent='🗑';
+  b.onclick=()=>{const x=getContacts();delete x[n];saveContacts(x);renderContacts()};
+  r.appendChild(b);el.appendChild(r);
+ });
+}
+function addContact(){
+ const n=document.getElementById('cname').value.trim().toLowerCase();
+ let p=document.getElementById('cnum').value.replace(/[^0-9]/g,'');
+ if(p.length===11&&p[0]==='0')p=p.slice(1);
+ if(p.length===10)p='91'+p;
+ if(!n||p.length<11){setNotice('⚠️ नाम और 10 अंकों का सही नंबर डालें।');return}
+ const c=getContacts();c[n]=p;saveContacts(c);
+ document.getElementById('cname').value='';document.getElementById('cnum').value='';
+ renderContacts();setNotice('✅ '+n+' सेव हो गया।');
+}
+const CHATW=['chat','चैट','के','साथ','से','बात','ke','saath','sath','bath','ko','with','web','browser','ब्राउज़र','ब्राउजर','message','मैसेज','और','का','की','पर'];
 let pendingUrl=null,pendingName='';
 const APPS=[
  {n:'YouTube',k:['youtube','you tube','यूट्यूब','यू ट्यूब','युटुब','यूटूब','युट्यूब','यूट्यूब','यु ट्यूब'],web:'https://www.youtube.com/',search:'https://www.youtube.com/results?search_query='},
- {n:'WhatsApp',k:['whatsapp','whats app','व्हाट्सएप','व्हाट्सऐप','वाट्सएप','व्हाट्सअप','वॉट्सऐप'],pkg:'com.whatsapp',web:'https://web.whatsapp.com/'},
+ {n:'WhatsApp',k:['whatsapp','whats app','व्हाट्सएप','व्हाट्सऐप','वाट्सएप','व्हाट्सअप','वॉट्सऐप'],pkg:'com.whatsapp',host:'send',scheme:'whatsapp',web:'https://wa.me/'},
  {n:'Google Maps',k:['google maps','गूगल मैप','maps','map','मैप्स','मैप','नक्शा'],web:'https://www.google.com/maps',search:'https://www.google.com/maps/search/?api=1&query='},
  {n:'VidMate',k:['vidmate','vid mate','विडमेट','वीडमेट'],pkg:'com.nemo.vidmate',web:'https://www.google.com/search?q=vidmate'},
  {n:'ChatGPT',k:['chatgpt','chat gpt','चैटजीपीटी','चैट जीपीटी'],pkg:'com.openai.chatgpt',web:'https://chatgpt.com/'},
@@ -63,11 +87,21 @@ const OPEN_WORDS=/(खोल|open|ओपन|ओपेन|चला|start|launch|
 const STOP=['ओपन','ओपेन','खोलो','खोलिए','खोल','दो','open','चलाओ','चलाइए','चला','start','launch','play','खोजो','search','चालू','करो','पर','में','पे','को','app','ऐप','एप','please','प्लीज','जरा','ज़रा','मेरा','मेरी','the','on','in'];
 function appUrl(a,query){
  if(query&&a.search) return a.search+encodeURIComponent(query);
- if(a.pkg) return 'intent://#Intent;package='+a.pkg+';S.browser_fallback_url='+encodeURIComponent(a.web)+';end';
+ if(a.pkg) return 'intent://'+(a.host?a.host+'/':'')+'#Intent'+(a.scheme?';scheme='+a.scheme:'')+';package='+a.pkg+';S.browser_fallback_url='+encodeURIComponent(a.web)+';end';
  return a.web;
 }
 function openCmd(q){
  if(!OPEN_WORDS.test(q)) return null;
+ const wa=APPS.find(a=>a.n==='WhatsApp');
+ if(wa.k.some(w=>q.includes(w))){
+  const c=getContacts();
+  const name=Object.keys(c).sort((x,y)=>y.length-x.length).find(n=>q.includes(n));
+  if(name){pendingUrl='https://wa.me/'+c[name];pendingName='WhatsApp';return 'WhatsApp पर '+name+' की chat खोल रहा हूँ…';}
+  let r2=q;
+  wa.k.slice().sort((x,y)=>y.length-x.length).forEach(w=>{r2=r2.split(w).join(' ')});
+  r2=r2.split(/\s+/).filter(t=>t&&!STOP.includes(t)&&!CHATW.includes(t)).join(' ');
+  if(r2) return '"'+r2+'" का नंबर सेव नहीं है। ⚙ Settings → WhatsApp Contacts में नाम और नंबर जोड़ें।';
+ }
  for(const a of APPS){
   if(!a.k.some(w=>q.includes(w))) continue;
   let rest=q;
@@ -144,7 +178,7 @@ async function send(){
   if(pendingUrl){
    const u=pendingUrl,n=pendingName;pendingUrl=null;
    const b=document.createElement('button');b.className='replay';b.textContent='▶ '+n+' खोलें';b.onclick=()=>{location.href=u};d.appendChild(b);
-   setTimeout(()=>{try{location.href=u}catch(e){}},700);
+   if(!u.startsWith('intent:')||(navigator.userActivation&&navigator.userActivation.isActive)) setTimeout(()=>{try{location.href=u}catch(e){}},700);
   }
  }catch(e){
   const m=e.message||'';
