@@ -128,39 +128,63 @@ function basic(q){
 async function weather(){
  try{const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=25.4358&longitude=81.8463&current=temperature_2m,weather_code&timezone=Asia%2FKolkata');const j=await r.json();return 'Prayagraj में अभी तापमान लगभग '+j.current.temperature_2m+'°C है। Weather code: '+j.current.weather_code+'.'}catch(e){return 'Weather service अभी उपलब्ध नहीं है।'}
 }
-const MODELS=['gemini-3.8-flash','gemini-3.6-flash','gemini-3.5-flash-lite'];
+const MODELS=['gemini-3.8-flash','gemini-3.6-flash','gemini-3.5-flash-lite','gemini-2.5-flash'];
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+let MODELS_CACHE=null;
+const GEM='https://generativelanguage.googleapis.com/v1beta/models';
+
+// आपकी key को जो models सच में मिलते हैं, उनकी सूची खुद उठाता है (सबसे नया flash पहले)
+async function pickModels(key){
+ try{
+  const r=await fetch(GEM+'?pageSize=1000&key='+encodeURIComponent(key));
+  if(!r.ok) return null;
+  const j=await r.json();
+  const names=(j.models||[])
+   .filter(m=>(m.supportedGenerationMethods||[]).includes('generateContent'))
+   .map(m=>m.name.replace('models/',''))
+   .filter(n=>/^gemini-[0-9.]+-flash(-lite)?$/.test(n));
+  names.sort((a,b)=>{
+   const va=parseFloat(a.split('-')[1]),vb=parseFloat(b.split('-')[1]);
+   if(va!==vb) return vb-va;
+   return (a.includes('lite')?1:0)-(b.includes('lite')?1:0);
+  });
+  return names.slice(0,4);
+ }catch(e){return null}
+}
 
 async function askGemini(prompt,apiKey){
- let lastError=new Error('AI service उपलब्ध नहीं है।');
- for(const model of MODELS){
-  for(let attempt=1;attempt<=3;attempt++){
+ if(!MODELS_CACHE){const m=await pickModels(apiKey);MODELS_CACHE=(m&&m.length)?m:MODELS}
+ const errs=[];
+ for(const model of MODELS_CACHE){
+  for(let attempt=1;attempt<=2;attempt++){
    try{
-    const res=await fetch('https://generativelanguage.googleapis.com/v1beta/models/'+model+':generateContent',{
+    const res=await fetch(GEM+'/'+model+':generateContent?key='+encodeURIComponent(apiKey),{
      method:'POST',
-     headers:{'Content-Type':'application/json','x-goog-api-key':apiKey},
+     headers:{'Content-Type':'application/json'},
      body:JSON.stringify({contents:[{role:'user',parts:[{text:prompt}]}]})
     });
-    // key गलत हो तो retry मत करो
-    if(res.status===400||res.status===401||res.status===403) throw new Error('KEY_ERROR');
-    // model मौजूद नहीं: सीधे अगले model पर जाओ
-    if(res.status===404) throw new Error('NO_MODEL_'+model);
-    // busy / rate limit / server error: retry करो
-    if(res.status===429||res.status>=500) throw new Error('BUSY_'+res.status);
+    if(res.status===401||res.status===403) throw new Error('KEY_ERROR');
+    if(res.status===400){
+     const j=await res.json().catch(()=>({}));
+     const msg=(j.error&&j.error.message)||'';
+     if(/api key/i.test(msg)) throw new Error('KEY_ERROR');
+     errs.push(model+': 400 '+msg.slice(0,80));break;
+    }
+    if(res.status===404){errs.push(model+': 404 (model नहीं मिला)');break}
+    if(res.status===429||res.status>=500){errs.push(model+': HTTP '+res.status+' (busy)');if(attempt<2)await sleep(1500);continue}
     const data=await res.json();
     const text=data.candidates?.[0]?.content?.parts?.map(p=>p.text||'').join('');
-    if(!text) throw new Error('EMPTY_REPLY');
+    if(!text){errs.push(model+': खाली जवाब');break}
     return text;
    }catch(err){
-    lastError=err;
     if(err.message==='KEY_ERROR') throw err;
-    if(err.message.startsWith('NO_MODEL_')) break;
-    if(attempt<3) await sleep(attempt*1500); // 1.5s, 3s
+    errs.push(model+': '+(err.message||'error'));
+    break; // network error: retry नहीं, अगला model
    }
   }
-  // इस model के 3 प्रयास फेल: अगला model आज़माओ
  }
- throw lastError;
+ MODELS_CACHE=null;
+ throw new Error('ALL_FAILED: '+errs.join(' | '));
 }
 async function askAI(q){
  const key=localStorage.getItem(KEY);
@@ -185,7 +209,7 @@ async function send(){
   let msg;
   if(m==='KEY_ERROR') msg='API key सही नहीं लगती या उसकी permission नहीं है।\n\nSettings ⚙ में key जाँचकर दोबारा Save करें।';
   else if(m==='EMPTY_REPLY') msg='मॉडल ने कोई जवाब नहीं दिया। दूसरे शब्दों में फिर पूछें।';
-  else if(m.startsWith('NO_MODEL_')) msg='Gemini के मॉडल नाम अब मान्य नहीं हैं ('+m+')। ऐप का नया version चाहिए।';
+  else if(m.startsWith('ALL_FAILED')) msg='Gemini से जवाब नहीं मिला।\n\n'+m.slice(12).split(' | ').join('\n')+'\n\nकुछ देर बाद फिर कोशिश करें।';
   else msg='Gemini अभी व्यस्त है या उपलब्ध नहीं है ('+m+')।\n\nकुछ सेकंड बाद फिर Send दबाएँ।';
   lastReply=msg;addMsg(msg,'bot');
  }finally{document.getElementById('status').textContent='STANDING BY'}
@@ -202,4 +226,4 @@ function startMic(){
 addMsg('Hello! I am JARVIS. How may I assist you?','bot');
 </script>
 </body>
- </html>
+</html>
