@@ -83,8 +83,8 @@ const APPS=[
  {n:'ChatGPT',k:['chatgpt','chat gpt','चैटजीपीटी','चैट जीपीटी'],pkg:'com.openai.chatgpt',web:'https://chatgpt.com/'},
  {n:'Claude',k:['claude','क्लाउड','क्लॉड'],pkg:'com.anthropic.claude',web:'https://claude.ai/'}
 ];
-const OPEN_WORDS=/(खोल|open|ओपन|ओपेन|चला|start|launch|play|खोज|search|चालू)/;
-const STOP=['ओपन','ओपेन','खोलो','खोलिए','खोल','दो','open','चलाओ','चलाइए','चला','start','launch','play','खोजो','search','चालू','करो','पर','में','पे','को','app','ऐप','एप','please','प्लीज','जरा','ज़रा','मेरा','मेरी','the','on','in'];
+const OPEN_WORDS=/(खोल|open|ओपन|ओपेन|चला|start|launch|play|प्ले|खोज|search|चालू)/;
+const STOP=['ओपन','ओपेन','खोलो','खोलिए','खोल','दो','open','चलाओ','चलाइए','चला','start','launch','play','खोजो','search','चालू','करो','पर','में','पे','को','app','ऐप','एप','please','प्लीज','जरा','ज़रा','मेरा','मेरी','the','on','in','प्ले','से','के','की','का'];
 function appUrl(a,query){
  if(query&&a.search) return a.search+encodeURIComponent(query);
  if(a.pkg) return 'intent://'+(a.host?a.host+'/':'')+'#Intent'+(a.scheme?';scheme='+a.scheme:'')+';package='+a.pkg+';S.browser_fallback_url='+encodeURIComponent(a.web)+';end';
@@ -112,12 +112,53 @@ function openCmd(q){
  }
  return null;
 }
+// ---- कैलेंडर reminder / जन्मदिन ----
+let awaitingReminder=null;
+const DATE_RE=/(\d{1,2})[-\/.](\d{1,2})[-\/.](\d{4})/;
+function reminderCmd(q){
+ const isB=/(birthday|बर्थडे|बर्थ डे|जन्मदिन|जन्मदिवस)/.test(q);
+ const isR=/(reminder|रिमाइंडर|याद दिला|calendar|कैलेंडर)/.test(q);
+ const dm=q.match(DATE_RE);
+ if(!isB&&!isR&&!awaitingReminder) return null;
+ if(!dm){
+  if(isB||isR){awaitingReminder={b:isB};return 'तारीख और नाम बताइए, जैसे: date 25-11-2026 name "Ansh Raj"'}
+  awaitingReminder=null;return null;
+ }
+ const b=isB||(awaitingReminder&&awaitingReminder.b);
+ awaitingReminder=null;
+ const d=+dm[1],m=+dm[2],y=+dm[3],dt=new Date(y,m-1,d);
+ if(dt.getFullYear()!==y||dt.getMonth()!==m-1||dt.getDate()!==d) return 'यह तारीख सही नहीं लगती। फिर से बताइए, जैसे 25-11-2026।';
+ let nm=(q.match(/["“”‘’']([^"“”‘’']{2,40})["“”‘’']/)||[])[1];
+ if(!nm){const m2=q.match(/(?:name|नाम)\s+([^\d]+?)(?:\s+(?:set|सेट|करो|kar|ko)\b|$)/);nm=m2&&m2[1].trim()}
+ if(nm) nm=nm.replace(/\b[a-z]/g,c=>c.toUpperCase());
+ const pad=n=>String(n).padStart(2,'0');
+ const ymd=x=>x.getFullYear()+pad(x.getMonth()+1)+pad(x.getDate());
+ const next=new Date(y,m-1,d+1);
+ const title=b?('🎂 '+(nm?nm+' का जन्मदिन':'Birthday')):(nm||'Reminder');
+ pendingUrl='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(title)+'&dates='+ymd(dt)+'/'+ymd(next)+(b?'&recur=RRULE:FREQ=YEARLY':'');
+ pendingName='Google Calendar';
+ return 'कैलेंडर में "'+title+'" ('+pad(d)+'-'+pad(m)+'-'+y+(b?', हर साल':'')+') तैयार है। खुलने पर Save दबाइए।';
+}
+// ---- गाना / music: YouTube search खोलता है ----
+const MUSIC_NOUN=/(song|music|गाना|गाने|म्यूजिक|संगीत|सॉन्ग|भजन|ग़ज़ल|गजल|bhajan|gaana|gane)/;
+const MUSIC_VERB=/(play|प्ले|चला|बजा|सुना|लगा|chalao|bajao|sunao|laga)/;
+const MUSICW=['play','प्ले','चला','चलाओ','बजा','बजाओ','सुना','सुनाओ','लगा','लगाओ','गाना','गाने','song','songs','music','म्यूजिक','संगीत','सॉन्ग','एक','a','some','me','मुझे','मेरे','लिए','for','करो','kar','kro','do','दो','please','प्लीज','ek','youtube','यूट्यूब'];
+function musicCmd(q){
+ if(!MUSIC_NOUN.test(q)||!MUSIC_VERB.test(q)||q.split(/\s+/).length>9) return null;
+ const rest=q.split(/\s+/).filter(t=>t&&!MUSICW.includes(t)&&!STOP.includes(t)).join(' ');
+ if(!rest) return 'कौन-सा गाना या singer? जैसे: "play arijit singh songs" या "kishore kumar के गाने चलाओ"';
+ pendingUrl='https://www.youtube.com/results?search_query='+encodeURIComponent(rest+' songs');pendingName='YouTube';
+ return '"'+rest+'" YouTube पर खोल रहा हूँ…';
+}
 function basic(q){
  q=q.toLowerCase().trim();
+ const rc=reminderCmd(q); if(rc) return rc;
  const oc=openCmd(q); if(oc) return oc;
+ const mc=musicCmd(q); if(mc) return mc;
+ const short=q.split(/\s+/).length<=5&&!/\d/.test(q);
  if(/^(hi|hello|hey|namaste|नमस्ते)/.test(q)) return 'Hello! I am JARVIS. How may I assist you?';
- if(q.includes('time')||q.includes('समय')) return 'अभी समय '+new Date().toLocaleTimeString('hi-IN',{hour:'2-digit',minute:'2-digit'})+' है।';
- if(q.includes('date')||q.includes('तारीख')) return 'आज '+new Date().toLocaleDateString('hi-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'})+' है।';
+ if(short&&/(^|\s)(time|समय|टाइम)(\s|$)/.test(q)) return 'अभी समय '+new Date().toLocaleTimeString('hi-IN',{hour:'2-digit',minute:'2-digit'})+' है।';
+ if(short&&/(^|\s)(date|तारीख|today)(\s|$)/.test(q)) return 'आज '+new Date().toLocaleDateString('hi-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'})+' है।';
  if(q.includes('weather')||q.includes('मौसम')) return null;
  if(/^[0-9+\-*/().%\s]+$/.test(q)&&/[0-9]/.test(q)&&/[+\-*/%]/.test(q)){try{return 'उत्तर: '+Function('return ('+q+')')()}catch(e){}}
  const m=q.match(/(?:calculate|calc|गणना|solve)\s+(.+)/i);
@@ -152,7 +193,9 @@ async function pickModels(key){
  }catch(e){return null}
 }
 
-async function askGemini(prompt,apiKey){
+const SYSTEM='You are JARVIS, a friendly voice assistant inside a phone browser page. You can ONLY chat and answer questions. You can NOT play music, set alarms or reminders, open apps, send messages or control the phone. The page handles those only when the user types an exact command, so never claim you did an action. If the user asks for one, tell them the command to use, for example: "play arijit singh songs", "open youtube", "open whatsapp chat ansh", "birthday date 25-11-2026 name Ansh". Reply in the same language as the user (Hindi, Hinglish or English), in 1 to 3 short sentences, as plain text with no markdown and no asterisks.';
+let HIST=[];
+async function askGemini(userText,apiKey){
  if(!MODELS_CACHE){const m=await pickModels(apiKey);MODELS_CACHE=(m&&m.length)?m:MODELS}
  const errs=[];
  for(const model of MODELS_CACHE){
@@ -161,7 +204,7 @@ async function askGemini(prompt,apiKey){
     const res=await fetch(GEM+'/'+model+':generateContent?key='+encodeURIComponent(apiKey),{
      method:'POST',
      headers:{'Content-Type':'application/json'},
-     body:JSON.stringify({contents:[{role:'user',parts:[{text:prompt}]}]})
+     body:JSON.stringify({systemInstruction:{parts:[{text:SYSTEM}]},contents:HIST.concat([{role:'user',parts:[{text:userText}]}])})
     });
     if(res.status===401||res.status===403) throw new Error('KEY_ERROR');
     if(res.status===400){
@@ -173,8 +216,11 @@ async function askGemini(prompt,apiKey){
     if(res.status===404){errs.push(model+': 404 (model नहीं मिला)');break}
     if(res.status===429||res.status>=500){errs.push(model+': HTTP '+res.status+' (busy)');if(attempt<2)await sleep(1500);continue}
     const data=await res.json();
-    const text=data.candidates?.[0]?.content?.parts?.map(p=>p.text||'').join('');
+    let text=data.candidates?.[0]?.content?.parts?.map(p=>p.text||'').join('');
     if(!text){errs.push(model+': खाली जवाब');break}
+    text=text.replace(/\*\*/g,'').replace(/^\s*\*\s+/gm,'• ').trim();
+    HIST.push({role:'user',parts:[{text:userText}]},{role:'model',parts:[{text:text}]});
+    if(HIST.length>12) HIST=HIST.slice(-12);
     return text;
    }catch(err){
     if(err.message==='KEY_ERROR') throw err;
@@ -189,7 +235,7 @@ async function askGemini(prompt,apiKey){
 async function askAI(q){
  const key=localStorage.getItem(KEY);
  if(!key)return 'AI service के लिए Settings ⚙ में Gemini API key डालें। बिना key के basic commands चलेंगे।';
- return askGemini('You are JARVIS. Reply briefly and helpfully. User language: Hindi/Hinglish when appropriate. User says: '+q,key);
+ return askGemini(q,key);
 }
 async function send(){
  const inp=document.getElementById('input'),q=inp.value.trim();if(!q)return;
