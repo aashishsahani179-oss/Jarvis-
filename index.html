@@ -52,15 +52,15 @@ function saveKey(){const k=document.getElementById('key').value.trim();if(k)loca
 function setNotice(t){document.getElementById('notice').innerHTML=t}
 let pendingUrl=null,pendingName='';
 const APPS=[
- {n:'YouTube',k:['youtube','you tube','यूट्यूब','यू ट्यूब','यूट्यूब'],web:'https://www.youtube.com/',search:'https://www.youtube.com/results?search_query='},
+ {n:'YouTube',k:['youtube','you tube','यूट्यूब','यू ट्यूब','युटुब','यूटूब','युट्यूब','यूट्यूब','यु ट्यूब'],web:'https://www.youtube.com/',search:'https://www.youtube.com/results?search_query='},
  {n:'WhatsApp',k:['whatsapp','whats app','व्हाट्सएप','व्हाट्सऐप','वाट्सएप','व्हाट्सअप','वॉट्सऐप'],pkg:'com.whatsapp',web:'https://web.whatsapp.com/'},
  {n:'Google Maps',k:['google maps','गूगल मैप','maps','map','मैप्स','मैप','नक्शा'],web:'https://www.google.com/maps',search:'https://www.google.com/maps/search/?api=1&query='},
  {n:'VidMate',k:['vidmate','vid mate','विडमेट','वीडमेट'],pkg:'com.nemo.vidmate',web:'https://www.google.com/search?q=vidmate'},
  {n:'ChatGPT',k:['chatgpt','chat gpt','चैटजीपीटी','चैट जीपीटी'],pkg:'com.openai.chatgpt',web:'https://chatgpt.com/'},
  {n:'Claude',k:['claude','क्लाउड','क्लॉड'],pkg:'com.anthropic.claude',web:'https://claude.ai/'}
 ];
-const OPEN_WORDS=/(खोल|open|चला|start|launch|play|खोज|search|चालू)/;
-const STOP=['खोलो','खोलिए','खोल','दो','open','चलाओ','चलाइए','चला','start','launch','play','खोजो','search','चालू','करो','पर','में','पे','को','app','ऐप','एप','please','प्लीज','जरा','ज़रा','मेरा','मेरी','the','on','in'];
+const OPEN_WORDS=/(खोल|open|ओपन|ओपेन|चला|start|launch|play|खोज|search|चालू)/;
+const STOP=['ओपन','ओपेन','खोलो','खोलिए','खोल','दो','open','चलाओ','चलाइए','चला','start','launch','play','खोजो','search','चालू','करो','पर','में','पे','को','app','ऐप','एप','please','प्लीज','जरा','ज़रा','मेरा','मेरी','the','on','in'];
 function appUrl(a,query){
  if(query&&a.search) return a.search+encodeURIComponent(query);
  if(a.pkg) return 'intent://#Intent;package='+a.pkg+';S.browser_fallback_url='+encodeURIComponent(a.web)+';end';
@@ -94,7 +94,7 @@ function basic(q){
 async function weather(){
  try{const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=25.4358&longitude=81.8463&current=temperature_2m,weather_code&timezone=Asia%2FKolkata');const j=await r.json();return 'Prayagraj में अभी तापमान लगभग '+j.current.temperature_2m+'°C है। Weather code: '+j.current.weather_code+'.'}catch(e){return 'Weather service अभी उपलब्ध नहीं है।'}
 }
-const MODELS=['gemini-2.5-flash','gemini-2.0-flash','gemini-2.5-flash-lite'];
+const MODELS=['gemini-3.8-flash','gemini-3.6-flash','gemini-3.5-flash-lite'];
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 
 async function askGemini(prompt,apiKey){
@@ -151,6 +151,7 @@ async function send(){
   let msg;
   if(m==='KEY_ERROR') msg='API key सही नहीं लगती या उसकी permission नहीं है।\n\nSettings ⚙ में key जाँचकर दोबारा Save करें।';
   else if(m==='EMPTY_REPLY') msg='मॉडल ने कोई जवाब नहीं दिया। दूसरे शब्दों में फिर पूछें।';
+  else if(m.startsWith('NO_MODEL_')) msg='Gemini के मॉडल नाम अब मान्य नहीं हैं ('+m+')। ऐप का नया version चाहिए।';
   else msg='Gemini अभी व्यस्त है या उपलब्ध नहीं है ('+m+')।\n\nकुछ सेकंड बाद फिर Send दबाएँ।';
   lastReply=msg;addMsg(msg,'bot');
  }finally{document.getElementById('status').textContent='STANDING BY'}
@@ -167,4 +168,4 @@ function startMic(){
 addMsg('Hello! I am JARVIS. How may I assist you?','bot');
 </script>
 </body>
-</html>
+ </html>
