@@ -31,6 +31,7 @@ main{max-width:760px;margin:auto;padding:22px 16px 100px}.orb{width:145px;height
 <button class="ok" onclick="saveKey()">Save Key</button>
 <p class="small">Key केवल आपके browser के local storage में रखी जाती है। इसे किसी के साथ share न करें।</p>
 <hr><label>WhatsApp Contacts</label><input id="cname" placeholder="नाम (जैसे ansh)"><input id="cnum" type="tel" placeholder="नंबर (जैसे 9876543210)"><button class="ok" onclick="addContact()">Add Contact</button><div id="clist"></div>
+<hr><button onclick="clearHistory();closeSettings();setNotice('🗑 चैट हिस्ट्री मिटा दी।')">🗑 Chat History मिटाएँ</button>
 <hr><p class="small">अगर key नहीं है, JARVIS फिर भी greeting, time, date, calculator और ऐप खोलने (YouTube, WhatsApp, Maps, VidMate, ChatGPT, Claude) वाले commands चला सकता है।</p>
 </div></div>
 
@@ -38,10 +39,12 @@ main{max-width:760px;margin:auto;padding:22px 16px 100px}.orb{width:145px;height
 const KEY='jarvis_gemini_key';
 let lastReply='', recognition=null;
 
-function addMsg(text,who='bot'){
+function addMsg(text,who='bot',noSave){
  const d=document.createElement('div'); d.className='msg '+who; d.textContent=text;
  if(who==='bot'){const b=document.createElement('button');b.className='replay';b.textContent='🔊 Replay';b.onclick=()=>speak(text);d.appendChild(b)}
- document.getElementById('chat').appendChild(d);window.scrollTo(0,document.body.scrollHeight);return d;
+ document.getElementById('chat').appendChild(d);window.scrollTo(0,document.body.scrollHeight);
+ if(!noSave){LOG.push({t:text,w:who});saveChat()}
+ return d;
 }
 const canSpeak=typeof speechSynthesis!=='undefined'&&typeof SpeechSynthesisUtterance!=='undefined';
 function speak(t){if(!canSpeak)return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang=/[\u0900-\u097F]/.test(t)?'hi-IN':'en-IN';u.rate=.95;speechSynthesis.speak(u)}catch(e){}}
@@ -51,6 +54,25 @@ function openSettings(){renderContacts();document.getElementById('key').value=lo
 function closeSettings(){document.getElementById('modal').style.display='none'}
 function saveKey(){const k=document.getElementById('key').value.trim();if(k)localStorage.setItem(KEY,k);else localStorage.removeItem(KEY);closeSettings();setNotice(k?'✅ Gemini API key saved.':'ℹ️ API key removed.')}
 function setNotice(t){document.getElementById('notice').innerHTML=t}
+const CHAT_KEY='jarvis_chat';
+let LOG=[];
+function saveChat(){try{LOG=LOG.slice(-60);localStorage.setItem(CHAT_KEY,JSON.stringify({log:LOG,hist:HIST}))}catch(e){}}
+function loadChat(){
+ try{
+  const o=JSON.parse(localStorage.getItem(CHAT_KEY)||'null');
+  if(o&&Array.isArray(o.log)&&o.log.length){
+   LOG=o.log;HIST=Array.isArray(o.hist)?o.hist:[];
+   LOG.forEach(m=>addMsg(m.t,m.w,true));
+   return true;
+  }
+ }catch(e){}
+ return false;
+}
+function clearHistory(){
+ LOG=[];HIST=[];lastReply='';
+ try{localStorage.removeItem(CHAT_KEY)}catch(e){}
+ document.getElementById('chat').innerHTML='';
+}
 const CKEY='jarvis_contacts';
 function getContacts(){try{return JSON.parse(localStorage.getItem(CKEY)||'{}')}catch(e){return {}}}
 function saveContacts(c){try{localStorage.setItem(CKEY,JSON.stringify(c))}catch(e){}}
@@ -152,11 +174,12 @@ function musicCmd(q){
 }
 function basic(q){
  q=q.toLowerCase().trim();
+ if(/(clear|delete)\s*(chat|history)|(history|हिस्ट्री|चैट).*(मिटा|साफ|clear|delete)|(मिटा|साफ).*(history|हिस्ट्री|चैट)/.test(q)){clearHistory();return 'चैट हिस्ट्री मिटा दी।'}
  const rc=reminderCmd(q); if(rc) return rc;
  const oc=openCmd(q); if(oc) return oc;
  const mc=musicCmd(q); if(mc) return mc;
  const short=q.split(/\s+/).length<=5&&!/\d/.test(q);
- if(/^(hi|hello|hey|namaste|नमस्ते)/.test(q)) return 'Hello! I am JARVIS. How may I assist you?';
+ if(/^(hi|hello|hey|namaste|नमस्ते)([\s!,.]|$)/.test(q)) return 'Hello! I am JARVIS. How may I assist you?';
  if(short&&/(^|\s)(time|समय|टाइम)(\s|$)/.test(q)) return 'अभी समय '+new Date().toLocaleTimeString('hi-IN',{hour:'2-digit',minute:'2-digit'})+' है।';
  if(short&&/(^|\s)(date|तारीख|today)(\s|$)/.test(q)) return 'आज '+new Date().toLocaleDateString('hi-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'})+' है।';
  if(q.includes('weather')||q.includes('मौसम')) return null;
@@ -269,7 +292,7 @@ function startMic(){
  recognition.onend=()=>document.getElementById('status').textContent='STANDING BY';
  try{recognition.start()}catch(e){}
 }
-addMsg('Hello! I am JARVIS. How may I assist you?','bot');
+if(!loadChat()) addMsg('Hello! I am JARVIS. How may I assist you?','bot'); else window.scrollTo(0,document.body.scrollHeight);
 </script>
 </body>
 </html>
