@@ -288,11 +288,4 @@ function startMic(){
  const R=window.SpeechRecognition||window.webkitSpeechRecognition;recognition=new R();recognition.lang='hi-IN';recognition.interimResults=false;recognition.continuous=false;
  recognition.onstart=()=>{document.getElementById('status').textContent='LISTENING...';setNotice('🎙️ बोलिए...')}
  recognition.onresult=e=>{document.getElementById('input').value=e.results[0][0].transcript;send()}
- recognition.onerror=e=>{setNotice((e.error==='not-allowed'&&!window.isSecureContext)?'🎙️ यह फ़ाइल https पते पर नहीं खुली है (अभी: '+location.protocol+'), इसलिए Chrome Mic की permission नहीं देता। इसे GitHub Pages जैसे https पते पर खोलें। तब तक keyboard का 🎙️ इस्तेमाल करें।':'🎙️ Mic error: '+e.error+' — Chrome Site settings में Microphone → Allow करें।');document.getElementById('status').textContent='STANDING BY'}
- recognition.onend=()=>document.getElementById('status').textContent='STANDING BY';
- try{recognition.start()}catch(e){}
-}
-if(!loadChat()) addMsg('Hello! I am JARVIS. How may I assist you?','bot'); else window.scrollTo(0,document.body.scrollHeight);
-</script>
-</body>
-</html>
+ recognition.onerror=e=>{setNotice((e.error==='not-allowed'&&!window.isSecureContext)?'🎙️ यह फ़ाइल https पते पर नहीं खुली है (अभी: '+location.protocol+'), इसलिए Chrome Mic की permission नहीं देता। इसे GitHub Pages जैसे https पते पर खोलें। तब तक keyboard का 🎙️ इस्तेमाल करें।':'🎙️ Mic error: '+e.error+' — Chrome Site settings में Microphone → Allow क
