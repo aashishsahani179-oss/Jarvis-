@@ -695,7 +695,11 @@ const GEMINI_URL=
 /* =================================================
    CHAT
 ================================================= */
-
+function dropLog(el,who){
+ const t=el.firstChild&&el.firstChild.nodeValue;
+ const i=LOG.findIndex(m=>m.t===t&&m.w===who);
+ if(i>-1)LOG.splice(i,1);
+   }
 function addMsg(
 text,
 who="bot",
@@ -731,7 +735,22 @@ d.appendChild(replay);
 
 }
 
-
+if(who==="user"&&!text.startsWith("📷")){
+ const ed=document.createElement("button");
+ ed.className="del";
+ ed.textContent="✏️";
+ ed.onclick=()=>{
+  const nx=d.nextElementSibling;
+  if(nx&&nx.classList.contains("bot")){dropLog(nx,"bot");nx.remove()}
+  dropLog(d,"user");
+  d.remove();
+  saveChat();
+  const inp=document.getElementById("input");
+  inp.value=text;
+  inp.focus();
+ };
+ d.appendChild(ed);
+   }
 const del=
 document.createElement("button");
 
@@ -742,7 +761,7 @@ del.textContent=
 "🗑";
 
 del.onclick=()=>{
-
+dropLog(d,who);
 d.remove();
 
 saveChat();
@@ -2600,7 +2619,6 @@ clearTimeout(
 wakeRestartTimer
 );
 
-
 wakeRestartTimer=
 setTimeout(()=>{
 
@@ -2651,7 +2669,7 @@ wakeRecognition.stop();
 wakeRecognition=null;
 
 
-const button=
+const button
 document.getElementById(
 "wakeBtn"
 );
@@ -2756,8 +2774,7 @@ encodeURIComponent(key),
 
 method:"POST",
 
-headers:{
-"Content-Type":
+n"Content-Type":
 "application/json"
 },
 
