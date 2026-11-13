@@ -1,28 +1,25 @@
 <!DOCTYPE html>
 <html lang="hi">
-
 <head>
 
 <meta charset="UTF-8">
 
-<meta
-name="viewport"
+<meta name="viewport"
 content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
 <title>J.A.R.V.I.S. Mobile AI</title>
 
-
 <style>
 
 *{
-box-sizing:border-box
+box-sizing:border-box;
 }
 
 body{
 margin:0;
 background:#0a2a5e;
 color:#d9f7ff;
-font-family:Arial,sans-serif
+font-family:Arial,sans-serif;
 }
 
 header{
@@ -31,7 +28,7 @@ border-bottom:1px solid #12334a;
 display:flex;
 align-items:center;
 padding:0 10px;
-gap:6px
+gap:6px;
 }
 
 .logo{
@@ -39,7 +36,7 @@ color:#21d9ff;
 font-weight:700;
 letter-spacing:4px;
 font-size:18px;
-flex:1
+flex:1;
 }
 
 button{
@@ -48,21 +45,21 @@ background:#071827;
 color:#d9f7ff;
 border-radius:12px;
 padding:11px 13px;
-font-size:14px
+font-size:14px;
 }
 
 button:active{
-transform:scale(.97)
+transform:scale(.97);
 }
 
 .gear{
-font-size:20px
+font-size:20px;
 }
 
 main{
 max-width:760px;
 margin:auto;
-padding:22px 15px 105px
+padding:22px 15px 105px;
 }
 
 .orb{
@@ -77,7 +74,7 @@ circle at 35% 30%,
 #14c7ec 55%,
 #08738f
 );
-box-shadow:0 0 45px #00d9ff66
+box-shadow:0 0 45px #00d9ff66;
 }
 
 .status{
@@ -85,7 +82,7 @@ text-align:center;
 letter-spacing:4px;
 color:#91aabb;
 margin-bottom:18px;
-font-size:14px
+font-size:14px;
 }
 
 .notice{
@@ -96,13 +93,13 @@ padding:12px;
 margin-bottom:15px;
 color:#ff8d8d;
 font-size:14px;
-line-height:1.5
+line-height:1.5;
 }
 
 .chat{
 display:flex;
 flex-direction:column;
-gap:12px
+gap:12px;
 }
 
 .msg{
@@ -111,31 +108,31 @@ padding:14px 16px;
 border-radius:16px;
 line-height:1.45;
 white-space:pre-wrap;
-word-break:break-word
+word-break:break-word;
 }
 
 .user{
 align-self:flex-end;
-background:#0d3655
+background:#0d3655;
 }
 
 .bot{
 align-self:flex-start;
 background:#071827;
-border:1px solid #123c58
+border:1px solid #123c58;
 }
 
 .replay{
 font-size:13px;
 padding:7px 12px;
-margin-top:9px
+margin-top:9px;
 }
 
 .del{
 font-size:13px;
 padding:7px 12px;
 margin-top:9px;
-margin-left:8px
+margin-left:8px;
 }
 
 .bottom{
@@ -148,7 +145,7 @@ border-top:1px solid #12334a;
 padding:10px;
 display:flex;
 gap:8px;
-z-index:4
+z-index:4;
 }
 
 .mic{
@@ -156,7 +153,7 @@ width:58px;
 background:#16d3f5;
 color:#00141c;
 font-size:21px;
-padding:11px 0
+padding:11px 0;
 }
 
 .input{
@@ -167,14 +164,14 @@ border:1px solid #16405c;
 border-radius:14px;
 color:white;
 padding:0 14px;
-font-size:16px
+font-size:16px;
 }
 
 .send{
 background:#16d3f5;
 color:#00141c;
 font-weight:bold;
-min-width:75px
+min-width:75px;
 }
 
 .modal{
@@ -184,7 +181,7 @@ inset:0;
 background:#000b;
 z-index:10;
 padding:20px;
-overflow:auto
+overflow:auto;
 }
 
 .panel{
@@ -193,7 +190,7 @@ margin:40px auto;
 background:#061522;
 border:1px solid #1b5573;
 border-radius:16px;
-padding:18px
+padding:18px;
 }
 
 .panel input{
@@ -203,43 +200,54 @@ border-radius:10px;
 border:1px solid #25506a;
 background:#020912;
 color:#fff;
-margin:8px 0 12px
+margin:8px 0 12px;
 }
 
 .small{
 font-size:12px;
 color:#8ca8b8;
-line-height:1.5
+line-height:1.5;
 }
 
 .ok{
 background:#16d3f5;
 color:#00141c;
-font-weight:bold
+font-weight:bold;
 }
 
 .close{
-float:right
+float:right;
 }
 
 .wake-on{
 background:#16d3f5!important;
-color:#00141c!important
+color:#00141c!important;
 }
 
 hr{
 border:0;
 border-top:1px solid #163d55;
-margin:18px 0
+margin:18px 0;
+}
+
+.contact{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:8px;
+padding:8px 0;
+border-bottom:1px solid #163d55;
+}
+
+.contact button{
+padding:6px 10px;
 }
 
 </style>
 
 </head>
 
-
 <body>
-
 
 <header>
 
@@ -269,21 +277,15 @@ onclick="openSettings()">
 
 </header>
 
-
 <main>
 
 <div class="orb"></div>
 
-<div
-id="status"
-class="status">
+<div id="status" class="status">
 STANDING BY
 </div>
 
-
-<div
-id="notice"
-class="notice">
+<div id="notice" class="notice">
 
 🎙️ Mic दबाकर Chrome में Microphone → Allow करें।<br>
 
@@ -292,24 +294,18 @@ class="notice">
 🟢 Wake दबाकर “Hey JARVIS” या “हे जार्विस” बोलें।<br>
 
 🌦️ Weather:
-“Ballia weather” या “Shivpur diyar numberi weather” बोलें।<br>
+“Ballia weather” बोलें।<br>
 
 🧮 Calculator:
 “52 plus 24 minus 2” बोलें।
 
 </div>
 
-
-<div
-id="chat"
-class="chat">
-</div>
+<div id="chat" class="chat"></div>
 
 </main>
 
-
 <div class="bottom">
-
 
 <button
 class="mic"
@@ -317,13 +313,11 @@ onclick="startMic()">
 🎙️
 </button>
 
-
 <button
 class="mic"
 onclick="document.getElementById('cam').click()">
 📷
 </button>
-
 
 <input
 id="cam"
@@ -331,17 +325,13 @@ type="file"
 accept="image/*"
 capture="environment"
 style="display:none"
-onchange="onPhoto(this)"
->
-
+onchange="onPhoto(this)">
 
 <input
 id="input"
 class="input"
 placeholder="Type or press mic..."
-onkeydown="if(event.key==='Enter')send()"
->
-
+onkeydown="if(event.key==='Enter')send()">
 
 <button
 class="send"
@@ -351,16 +341,11 @@ Send
 
 </div>
 
-
-
 <!-- SETTINGS -->
 
-<div
-id="modal"
-class="modal">
+<div id="modal" class="modal">
 
 <div class="panel">
-
 
 <button
 class="close"
@@ -368,30 +353,24 @@ onclick="closeSettings()">
 ✕
 </button>
 
-
 <h2>
 J.A.R.V.I.S Settings
 </h2>
-
 
 <label>
 Gemini API Key
 </label>
 
-
 <input
 id="key"
 type="password"
-placeholder="AIza..."
->
-
+placeholder="AIza...">
 
 <button
 class="ok"
 onclick="saveKey()">
 Save Key
 </button>
-
 
 <p class="small">
 
@@ -400,27 +379,20 @@ Gemini API key आपके browser के local storage
 
 </p>
 
-
 <hr>
-
 
 <h3>
 WhatsApp Contacts
 </h3>
 
-
 <input
 id="cname"
-placeholder="नाम जैसे ansh"
->
-
+placeholder="नाम जैसे ansh">
 
 <input
 id="cnum"
 type="tel"
-placeholder="9876543210"
->
-
+placeholder="9876543210">
 
 <button
 class="ok"
@@ -428,12 +400,9 @@ onclick="addContact()">
 Add Contact
 </button>
 
-
 <div id="clist"></div>
 
-
 <hr>
-
 
 <button
 onclick="clearHistory();closeSettings();setNotice('🗑 Chat history मिटा दी गई।')">
@@ -442,45 +411,62 @@ onclick="clearHistory();closeSettings();setNotice('🗑 Chat history मिट�
 
 </button>
 
-
 </div>
 
 </div>
-
-
 
 <script>
 
+/* =================================================
+   VARIABLES
+================================================= */
+
+const KEY = "jarvis_gemini_key";
+const CHAT_KEY = "jarvis_chat";
+const CONTACT_KEY = "jarvis_contacts";
+
+let LOG = [];
+let HIST = [];
+let lastReply = "";
+
+let recognition = null;
+let wakeRecognition = null;
+let wakeActive = false;
+let wakeRestartTimer = null;
+
 
 /* =================================================
-   JARVIS AI APP ICON + PWA
+   GEMINI MODELS
+================================================= */
+
+const GEMINI_MODELS = [
+"gemini-2.5-flash",
+"gemini-2.5-flash-lite"
+];
+
+const GEMINI_URL =
+"https://generativelanguage.googleapis.com/v1beta/models";
+
+
+/* =================================================
+   APP ICON
 ================================================= */
 
 (function(){
 
 try{
 
-const svg=`
-
-<svg
-xmlns="http://www.w3.org/2000/svg"
+const svg = `
+<svg xmlns="http://www.w3.org/2000/svg"
 viewBox="0 0 512 512">
 
 <defs>
 
 <radialGradient id="g">
 
-<stop
-offset="0"
-stop-color="#8cf5ff"/>
-
-<stop
-offset=".55"
-stop-color="#14c7ec"/>
-
-<stop
-offset="1"
-stop-color="#06396b"/>
+<stop offset="0" stop-color="#8cf5ff"/>
+<stop offset=".55" stop-color="#14c7ec"/>
+<stop offset="1" stop-color="#06396b"/>
 
 </radialGradient>
 
@@ -493,9 +479,7 @@ result="b"/>
 <feMerge>
 
 <feMergeNode in="b"/>
-
-<feMergeNode
-in="SourceGraphic"/>
+<feMergeNode in="SourceGraphic"/>
 
 </feMerge>
 
@@ -503,13 +487,11 @@ in="SourceGraphic"/>
 
 </defs>
 
-
 <rect
 width="512"
 height="512"
 rx="110"
 fill="#05182b"/>
-
 
 <circle
 cx="256"
@@ -517,7 +499,6 @@ cy="256"
 r="155"
 fill="url(#g)"
 filter="url(#glow)"/>
-
 
 <circle
 cx="256"
@@ -527,20 +508,17 @@ fill="none"
 stroke="#d9f7ff"
 stroke-width="9"/>
 
-
 <path
 d="M180 260 Q256 185 332 260 Q256 335 180 260Z"
 fill="none"
 stroke="#ffffff"
 stroke-width="10"/>
 
-
 <circle
 cx="256"
 cy="260"
 r="24"
 fill="#ffffff"/>
-
 
 <path
 d="M145 145 L185 185
@@ -554,214 +532,152 @@ stroke-linecap="round"/>
 </svg>
 `;
 
+const icon =
+"data:image/svg+xml;base64," +
+btoa(unescape(encodeURIComponent(svg)));
 
-const icon=
-
-"data:image/svg+xml;base64,"+
-btoa(
-unescape(
-encodeURIComponent(svg)
-)
-);
-
-
-const favicon=
+const favicon =
 document.createElement("link");
 
-favicon.rel="icon";
-
-favicon.type="image/svg+xml";
-
-favicon.href=icon;
+favicon.rel = "icon";
+favicon.type = "image/svg+xml";
+favicon.href = icon;
 
 document.head.appendChild(favicon);
-
-
-const apple=
-document.createElement("link");
-
-apple.rel="apple-touch-icon";
-
-apple.href=icon;
-
-document.head.appendChild(apple);
-
-
-const manifest={
-
-name:"J.A.R.V.I.S AI",
-
-short_name:"JARVIS",
-
-description:
-"JARVIS Mobile AI Assistant",
-
-start_url:"./",
-
-display:"standalone",
-
-orientation:"portrait",
-
-background_color:"#05182b",
-
-theme_color:"#0a2a5e",
-
-icons:[
-{
-src:icon,
-sizes:"512x512",
-type:"image/svg+xml",
-purpose:"any maskable"
-}
-]
-
-};
-
-
-const blob=
-new Blob(
-[
-JSON.stringify(manifest)
-],
-{
-type:
-"application/manifest+json"
-}
-);
-
-
-const manifestLink=
-document.createElement("link");
-
-manifestLink.rel="manifest";
-
-manifestLink.href=
-URL.createObjectURL(blob);
-
-document.head.appendChild(
-manifestLink
-);
-
 
 }catch(e){}
 
 })();
 
 
-
 /* =================================================
-   VARIABLES
+   CHAT LOG DELETE
 ================================================= */
 
-const KEY=
-"jarvis_gemini_key";
+function dropLog(el, who){
 
-const CHAT_KEY=
-"jarvis_chat";
+const t =
+el.firstChild &&
+el.firstChild.nodeValue;
 
-let LOG=[];
+const i =
+LOG.findIndex(
+m => m.t === t && m.w === who
+);
 
-let HIST=[];
+if(i > -1){
 
-let lastReply="";
+LOG.splice(i,1);
 
-let recognition=null;
+}
 
-let wakeRecognition=null;
-
-let wakeActive=false;
-
-let wakeRestartTimer=null;
+}
 
 
 /* =================================================
-   GEMINI MODELS
+   ADD MESSAGE
 ================================================= */
 
-const GEMINI_MODELS=[
-
-"gemini-3.5-flash-lite",
-
-"gemini-2.5-flash"
-
-];
-
-
-const GEMINI_URL=
-"https://generativelanguage.googleapis.com/v1beta/models";
-
-
-
-/* =================================================
-   CHAT
-================================================= */
-function dropLog(el,who){
- const t=el.firstChild&&el.firstChild.nodeValue;
- const i=LOG.findIndex(m=>m.t===t&&m.w===who);
- if(i>-1)LOG.splice(i,1);
-   }
 function addMsg(
 text,
 who="bot",
 noSave=false
 ){
 
-const d=
+const d =
 document.createElement("div");
 
-d.className=
-"msg "+who;
+d.className =
+"msg " + who;
 
-d.textContent=
-text;
+d.textContent = text;
 
 
-if(who==="bot"){
+/* Replay button */
 
-const replay=
+if(who === "bot"){
+
+const replay =
 document.createElement("button");
 
-replay.className=
-"replay";
+replay.className = "replay";
 
-replay.textContent=
-"🔊 Replay";
+replay.textContent = "🔊 Replay";
 
-replay.onclick=()=>{
-speak(text)
+replay.onclick = () => {
+
+speak(text);
+
 };
 
 d.appendChild(replay);
 
 }
 
-if(who==="user"&&!text.startsWith("📷")){
- const ed=document.createElement("button");
- ed.className="del";
- ed.textContent="✏️";
- ed.onclick=()=>{
-  const nx=d.nextElementSibling;
-  if(nx&&nx.classList.contains("bot")){dropLog(nx,"bot");nx.remove()}
-  dropLog(d,"user");
-  d.remove();
-  saveChat();
-  const inp=document.getElementById("input");
-  inp.value=text;
-  inp.focus();
- };
- d.appendChild(ed);
-   }
-const del=
+
+/* Edit button for user */
+
+if(
+who === "user" &&
+!text.startsWith("📷")
+){
+
+const ed =
 document.createElement("button");
 
-del.className=
-"del";
+ed.className = "del";
 
-del.textContent=
-"🗑";
+ed.textContent = "✏️";
 
-del.onclick=()=>{
+ed.onclick = () => {
+
+const nx =
+d.nextElementSibling;
+
+if(
+nx &&
+nx.classList.contains("bot")
+){
+
+dropLog(nx,"bot");
+
+nx.remove();
+
+}
+
+dropLog(d,"user");
+
+d.remove();
+
+saveChat();
+
+const inp =
+document.getElementById("input");
+
+inp.value = text;
+
+inp.focus();
+
+};
+
+d.appendChild(ed);
+
+}
+
+
+/* Delete button */
+
+const del =
+document.createElement("button");
+
+del.className = "del";
+
+del.textContent = "🗑";
+
+del.onclick = () => {
+
 dropLog(d,who);
+
 d.remove();
 
 saveChat();
@@ -793,46 +709,37 @@ saveChat();
 
 }
 
-
 return d;
 
 }
 
 
-
 /* =================================================
-   SPEAK
+   SPEECH
 ================================================= */
 
 function speak(text){
 
 if(
-typeof speechSynthesis==="undefined"
+typeof speechSynthesis === "undefined"
 )
 return;
-
 
 try{
 
 speechSynthesis.cancel();
 
+const u =
+new SpeechSynthesisUtterance(text);
 
-const u=
-new SpeechSynthesisUtterance(
-text
-);
-
-
-u.lang=
+u.lang =
 /[\u0900-\u097F]/.test(text)
 ?
 "hi-IN"
 :
 "en-IN";
 
-
-u.rate=.95;
-
+u.rate = 0.95;
 
 speechSynthesis.speak(u);
 
@@ -854,11 +761,13 @@ speechSynthesis.cancel();
 
 function replayLast(){
 
-if(lastReply)
+if(lastReply){
+
 speak(lastReply);
 
 }
 
+}
 
 
 /* =================================================
@@ -869,10 +778,9 @@ function setNotice(text){
 
 document.getElementById(
 "notice"
-).innerHTML=text;
+).innerHTML = text;
 
 }
-
 
 
 /* =================================================
@@ -881,59 +789,42 @@ document.getElementById(
 
 function openSettings(){
 
-document.getElementById(
-"key"
-).value=
-localStorage.getItem(KEY)||"";
-
+document.getElementById("key").value =
+localStorage.getItem(KEY) || "";
 
 renderContacts();
 
-
-document.getElementById(
-"modal"
-).style.display=
-"block";
+document.getElementById("modal")
+.style.display = "block";
 
 }
 
 
 function closeSettings(){
 
-document.getElementById(
-"modal"
-).style.display=
-"none";
+document.getElementById("modal")
+.style.display = "none";
 
 }
 
 
 function saveKey(){
 
-const key=
-document.getElementById(
-"key"
-).value.trim();
-
+const key =
+document.getElementById("key")
+.value.trim();
 
 if(key){
 
-localStorage.setItem(
-KEY,
-key
-);
+localStorage.setItem(KEY,key);
 
 }else{
 
-localStorage.removeItem(
-KEY
-);
+localStorage.removeItem(KEY);
 
 }
 
-
 closeSettings();
-
 
 setNotice(
 key
@@ -946,9 +837,8 @@ key
 }
 
 
-
 /* =================================================
-   HISTORY
+   CHAT HISTORY
 ================================================= */
 
 function saveChat(){
@@ -959,9 +849,8 @@ localStorage.setItem(
 CHAT_KEY,
 JSON.stringify({
 
-log:LOG.slice(-60),
-
-hist:HIST.slice(-12)
+log: LOG.slice(-60),
+hist: HIST.slice(-12)
 
 })
 );
@@ -975,30 +864,27 @@ function loadChat(){
 
 try{
 
-const data=
+const data =
 JSON.parse(
-localStorage.getItem(
-CHAT_KEY
-)||"null"
+localStorage.getItem(CHAT_KEY)
+|| "null"
 );
-
 
 if(
 data &&
 Array.isArray(data.log)
 ){
 
-LOG=data.log;
+LOG = data.log;
 
-HIST=
+HIST =
 Array.isArray(data.hist)
 ?
 data.hist
 :
 [];
 
-
-LOG.forEach(item=>{
+LOG.forEach(item => {
 
 addMsg(
 item.t,
@@ -1007,7 +893,6 @@ true
 );
 
 });
-
 
 return true;
 
@@ -1022,28 +907,21 @@ return false;
 
 function clearHistory(){
 
-LOG=[];
-
-HIST=[];
-
-lastReply="";
-
+LOG = [];
+HIST = [];
+lastReply = "";
 
 try{
 
-localStorage.removeItem(
-CHAT_KEY
-);
+localStorage.removeItem(CHAT_KEY);
 
 }catch(e){}
 
-
 document.getElementById(
 "chat"
-).innerHTML="";
+).innerHTML = "";
 
 }
-
 
 
 /* =================================================
@@ -1055,9 +933,8 @@ function getContacts(){
 try{
 
 return JSON.parse(
-localStorage.getItem(
-"jarvis_contacts"
-)||"{}"
+localStorage.getItem(CONTACT_KEY)
+|| "{}"
 );
 
 }catch(e){
@@ -1074,7 +951,7 @@ function saveContacts(c){
 try{
 
 localStorage.setItem(
-"jarvis_contacts",
+CONTACT_KEY,
 JSON.stringify(c)
 );
 
@@ -1085,37 +962,52 @@ JSON.stringify(c)
 
 function renderContacts(){
 
-const list=
-document.getElementById(
-"clist"
-);
+const list =
+document.getElementById("clist");
 
 if(!list)
 return;
 
+list.innerHTML = "";
 
-list.innerHTML="";
-
-
-const contacts=
+const contacts =
 getContacts();
 
-
 Object.keys(contacts)
-.forEach(name=>{
+.forEach(name => {
 
-const div=
-document.createElement(
-"div"
-);
+const div =
+document.createElement("div");
 
-div.className=
-"small";
+div.className = "contact";
 
-div.textContent=
-name+
-" — "+
-contacts[name];
+const span =
+document.createElement("span");
+
+span.className = "small";
+
+span.textContent =
+name + " — " + contacts[name];
+
+const btn =
+document.createElement("button");
+
+btn.textContent = "🗑";
+
+btn.onclick = () => {
+
+const c = getContacts();
+
+delete c[name];
+
+saveContacts(c);
+
+renderContacts();
+
+};
+
+div.appendChild(span);
+div.appendChild(btn);
 
 list.appendChild(div);
 
@@ -1126,31 +1018,26 @@ list.appendChild(div);
 
 function addContact(){
 
-const name=
-document.getElementById(
-"cname"
-).value
+const name =
+document.getElementById("cname")
+.value
 .trim()
 .toLowerCase();
 
-
-let number=
-document.getElementById(
-"cnum"
-).value
+let number =
+document.getElementById("cnum")
+.value
 .replace(/\D/g,"");
 
+if(number.length === 10){
 
-if(number.length===10){
-
-number="91"+number;
+number = "91" + number;
 
 }
 
-
 if(
-!name||
-number.length<11
+!name ||
+number.length < 11
 ){
 
 setNotice(
@@ -1161,31 +1048,20 @@ return;
 
 }
 
-
-const contacts=
+const contacts =
 getContacts();
 
+contacts[name] = number;
 
-contacts[name]=number;
+saveContacts(contacts);
 
+document.getElementById("cname")
+.value = "";
 
-saveContacts(
-contacts
-);
-
-
-document.getElementById(
-"cname"
-).value="";
-
-
-document.getElementById(
-"cnum"
-).value="";
-
+document.getElementById("cnum")
+.value = "";
 
 renderContacts();
-
 
 setNotice(
 "✅ WhatsApp contact सेव हो गया।"
@@ -1194,88 +1070,78 @@ setNotice(
 }
 
 
-
 /* =================================================
    CALCULATOR
 ================================================= */
 
 function calculator(q){
 
-let s=
+let s =
 q.toLowerCase();
 
-
-s=s
-.replace(/×/g,"*")
+s =
+s.replace(/×/g,"*")
 .replace(/÷/g,"/");
 
-
-s=s.replace(
+s =
+s.replace(
 /plus|प्लस|जोड़ो|जोड़|जमा/g,
 "+"
 );
 
-
-s=s.replace(
+s =
+s.replace(
 /minus|माइनस|घटाओ|घटा/g,
 "-"
 );
 
-
-s=s.replace(
+s =
+s.replace(
 /times|multiply|गुणा|गुना|into/g,
 "*"
 );
 
-
-s=s.replace(
+s =
+s.replace(
 /divide|divided by|डिवाइड|भाग|बटा/g,
 "/"
 );
 
-
-s=s.replace(
+s =
+s.replace(
 /calculate|calculator|calc|solve|what is|kitna|kitne|kya|batao|बताओ|बताइए|कितना|कितने|क्या|है|होगा|उत्तर/g,
 " "
 );
 
-
-s=s.replace(
-/\s+/g,
-""
-);
-
+s =
+s.replace(/\s+/g,"");
 
 if(
 !/^[0-9+\-*/().]+$/.test(s)
 )
 return null;
 
-
 if(
 !/[+\-*/]/.test(s)
 )
 return null;
 
-
 try{
 
-const result=
+const result =
 Function(
 '"use strict";return ('+
 s+
 ')'
 )();
 
+if(!isFinite(result)){
 
-if(!isFinite(result))
 return "उत्तर नहीं निकाला जा सकता।";
 
+}
 
-return(
-"उत्तर: "+
-result
-);
+return "उत्तर: " + result;
 
 }catch(e){
 
@@ -1286,291 +1152,198 @@ return null;
 }
 
 
-
-/* =================================================
-   WEATHER LOCATION CLEAN
-================================================= */
-
-function cleanWeatherPlace(q){
-
-let s=
-q.toLowerCase();
-
-
-s=s.replace(
-
-/weather|मौसम|वेदर|बताओ|बताइए|बताइये|बता|बताइ|please|प्लीज/g,
-
-" "
-
-);
-
-
-s=s.replace(
-
-/\b(का|के|की|में|मे|पर|आज|अभी|यहाँ|यहां)\b/g,
-
-" "
-
-);
-
-
-s=s
-.replace(/\s+/g," ")
-.trim();
-
-
-return s;
-
-}
-
-
-
 /* =================================================
    WEATHER
 ================================================= */
 
+function cleanWeatherPlace(q){
+
+let s =
+q.toLowerCase();
+
+s =
+s.replace(
+/weather|मौसम|वेदर|बताओ|बताइए|बताइये|बता|बताइ|please|प्लीज/g,
+" "
+);
+
+s =
+s.replace(
+/\b(का|के|की|में|मे|पर|आज|अभी|यहाँ|यहां)\b/g,
+" "
+);
+
+return s
+.replace(/\s+/g," ")
+.trim();
+
+}
+
+
 async function weather(q){
 
-let place=
+const place =
 cleanWeatherPlace(q);
-
 
 if(!place){
 
-return(
-"🌦️ किस जगह का मौसम चाहिए? उदाहरण: Ballia weather"
-);
+return "🌦️ किस जगह का मौसम चाहिए? उदाहरण: Ballia weather";
 
 }
 
-
 setNotice(
-"🌍 "+
-place+
+"🌍 " +
+place +
 " की location खोज रहा हूँ..."
 );
 
-
 try{
 
-let url=
-"https://geocoding-api.open-meteo.com/v1/search?name="+
-encodeURIComponent(place)+
+let url =
+"https://geocoding-api.open-meteo.com/v1/search?name=" +
+encodeURIComponent(place) +
 "&count=5&language=en&format=json";
 
-
-let response=
+let response =
 await fetch(url);
 
-
-let data=
+let data =
 await response.json();
 
-
-/*
-   अगर exact phrase नहीं मिले
-*/
-
 if(
-!data.results||
+!data.results ||
 !data.results.length
 ){
 
-const words=
+const words =
 place.split(" ");
 
+if(words.length > 2){
 
-if(words.length>2){
+const shorter =
+words.slice(0,2).join(" ");
 
-const shorter=
-words.slice(0,2)
-.join(" ");
-
-
-url=
-"https://geocoding-api.open-meteo.com/v1/search?name="+
-encodeURIComponent(shorter)+
+url =
+"https://geocoding-api.open-meteo.com/v1/search?name=" +
+encodeURIComponent(shorter) +
 "&count=5&language=en&format=json";
 
-
-response=
+response =
 await fetch(url);
 
-
-data=
+data =
 await response.json();
 
 }
 
 }
 
-
 if(
-!data.results||
+!data.results ||
 !data.results.length
 ){
 
-return(
-'❌ "'+
-place+
-'" की location नहीं मिली।\n\n'+
+return (
+'❌ "' +
+place +
+'" की location नहीं मिली।\n\n' +
 "शहर या गाँव का नाम थोड़ा साफ़ लिखें।"
 );
 
 }
 
-
-const location=
+const location =
 data.results[0];
 
-
-const latitude=
-location.latitude;
-
-
-const longitude=
-location.longitude;
-
-
-const locationName=
-location.name;
-
-
-const country=
-location.country||
-"";
-
-
-const weatherUrl=
-"https://api.open-meteo.com/v1/forecast"+
-"?latitude="+
-latitude+
-"&longitude="+
-longitude+
-"&current=temperature_2m"+
-",relative_humidity_2m"+
-",apparent_temperature"+
-",weather_code"+
-",wind_speed_10m"+
+const weatherUrl =
+"https://api.open-meteo.com/v1/forecast" +
+"?latitude=" + location.latitude +
+"&longitude=" + location.longitude +
+"&current=temperature_2m" +
+",relative_humidity_2m" +
+",apparent_temperature" +
+",weather_code" +
+",wind_speed_10m" +
 "&timezone=auto";
 
-
-const weatherResponse=
+const weatherResponse =
 await fetch(weatherUrl);
 
-
-const weatherData=
+const weatherData =
 await weatherResponse.json();
 
-
-const c=
+const c =
 weatherData.current;
 
+const code =
+Number(c.weather_code);
 
-let condition="";
+let condition = "बादल";
 
+if(code === 0){
 
-const code=
-Number(
-c.weather_code
-);
+condition = "साफ आसमान";
 
+}else if(code <= 3){
 
-if(code===0){
+condition = "आंशिक बादल";
 
-condition=
-"साफ आसमान";
+}else if(code <= 48){
 
-}
+condition = "कोहरा";
 
-else if(code<=3){
+}else if(code <= 67){
 
-condition=
-"आंशिक बादल";
+condition = "बारिश";
 
-}
+}else if(code <= 77){
 
-else if(code<=48){
+condition = "बर्फबारी";
 
-condition=
-"कोहरा";
+}else if(code <= 82){
 
-}
+condition = "बारिश की बौछार";
 
-else if(code<=67){
+}else if(code >= 95){
 
-condition=
-"बारिश";
+condition = "गरज के साथ बारिश";
 
 }
 
-else if(code<=77){
+return (
+"🌦️ " +
+location.name +
+(location.country
+? ", " + location.country
+: "") +
+" का अभी मौसम:\n\n" +
 
-condition=
-"बर्फबारी";
+"🌡️ तापमान: " +
+c.temperature_2m +
+"°C\n" +
 
-}
+"💧 नमी: " +
+c.relative_humidity_2m +
+"%\n" +
 
-else if(code<=82){
+"🌬️ हवा: " +
+c.wind_speed_10m +
+" km/h\n" +
 
-condition=
-"बारिश की बौछार";
-
-}
-
-else if(code>=95){
-
-condition=
-"गरज के साथ बारिश";
-
-}
-
-else{
-
-condition=
-"बादल";
-
-}
-
-
-return(
-
-"🌦️ "+
-locationName+
-(country?
-", "+country:
-"")+
-" का अभी मौसम:\n\n"+
-
-"🌡️ तापमान: "+
-c.temperature_2m+
-"°C\n"+
-
-"💧 नमी: "+
-c.relative_humidity_2m+
-"%\n"+
-
-"🌬️ हवा: "+
-c.wind_speed_10m+
-" km/h\n"+
-
-"☁️ स्थिति: "+
+"☁️ स्थिति: " +
 condition
-
 );
-
 
 }catch(error){
 
-return(
-"⚠️ Weather service से जानकारी नहीं मिल पाई।\nInternet connection check करें।"
+return (
+"⚠️ Weather service से जानकारी नहीं मिल पाई।\n" +
+"Internet connection check करें।"
 );
 
 }
 
 }
-
 
 
 /* =================================================
@@ -1579,12 +1352,12 @@ return(
 
 function isRetryable(status){
 
-return(
-status===429||
-status===500||
-status===502||
-status===503||
-status===504
+return (
+status === 429 ||
+status === 500 ||
+status === 502 ||
+status === 503 ||
+status === 504
 );
 
 }
@@ -1593,10 +1366,7 @@ status===504
 function sleep(ms){
 
 return new Promise(
-resolve=>setTimeout(
-resolve,
-ms
-)
+resolve => setTimeout(resolve,ms)
 );
 
 }
@@ -1608,13 +1378,12 @@ key,
 question
 ){
 
-const response=
+const response =
 await fetch(
-
-GEMINI_URL+
-"/"+
-model+
-":generateContent?key="+
+GEMINI_URL +
+"/" +
+model +
+":generateContent?key=" +
 encodeURIComponent(key),
 
 {
@@ -1622,8 +1391,7 @@ encodeURIComponent(key),
 method:"POST",
 
 headers:{
-"Content-Type":
-"application/json"
+"Content-Type":"application/json"
 },
 
 body:JSON.stringify({
@@ -1635,7 +1403,6 @@ parts:[
 {
 
 text:
-
 "You are JARVIS, a friendly mobile AI assistant. Answer in the same language as the user. Keep answers short, clear and helpful. Do not claim that you performed phone actions unless the webpage actually performed them."
 
 }
@@ -1671,79 +1438,64 @@ text:question
 
 if(!response.ok){
 
-let message="";
-
+let message = "";
 
 try{
 
-const error=
+const error =
 await response.json();
 
-
-message=
-error.error?.message||
+message =
+error.error?.message ||
 "";
 
 }catch(e){}
 
-
-const err=
+const err =
 new Error(
-"HTTP "+
-response.status+
+"HTTP " +
+response.status +
 (
 message
 ?
-" - "+
-message
+" - " + message
 :
 ""
 )
 );
 
-
-err.status=
+err.status =
 response.status;
-
 
 throw err;
 
 }
 
-
-const data=
+const data =
 await response.json();
 
-
-const text=
+const text =
 data
 .candidates?.[0]
 ?.content
 ?.parts
-?.map(
-p=>p.text||""
-)
+?.map(p => p.text || "")
 .join("");
-
 
 if(!text){
 
-const err=
-new Error(
-"EMPTY_REPLY"
-);
+const err =
+new Error("EMPTY_REPLY");
 
-err.status=200;
+err.status = 200;
 
 throw err;
 
 }
 
-
 return text.trim();
 
 }
-
 
 
 /* =================================================
@@ -1755,9 +1507,7 @@ question,
 key
 ){
 
-let lastError=
-null;
-
+let lastError = null;
 
 for(
 let i=0;
@@ -1765,9 +1515,8 @@ i<GEMINI_MODELS.length;
 i++
 ){
 
-const model=
+const model =
 GEMINI_MODELS[i];
-
 
 for(
 let attempt=1;
@@ -1778,72 +1527,58 @@ attempt++
 try{
 
 setNotice(
-"🤖 "+
-model+
+"🤖 " +
+model +
 " से जवाब लिया जा रहा है..."
 );
 
-
-const answer=
+const answer =
 await callGemini(
 model,
 key,
 question
 );
 
-
 HIST.push(
 
 {
 role:"user",
-
 parts:[
 {
 text:question
 }
 ]
-
 },
 
 {
 role:"model",
-
 parts:[
 {
 text:answer
 }
 ]
-
 }
 
 );
 
+if(HIST.length > 12){
 
-if(
-HIST.length>12
-){
-
-HIST=
+HIST =
 HIST.slice(-12);
 
 }
 
-
 saveChat();
-
 
 return answer;
 
-
 }catch(error){
 
-lastError=
-error;
-
+lastError = error;
 
 if(
-error.status===401||
-error.status===403
+error.status === 401 ||
+error.status === 403
 ){
 
 throw new Error(
@@ -1852,31 +1587,24 @@ throw new Error(
 
 }
 
-
 if(
-!isRetryable(
-error.status
-)
+!isRetryable(error.status)
 ){
 
 break;
 
 }
 
-
-if(
-attempt<3
-){
+if(attempt < 3){
 
 setNotice(
-"⏳ Gemini busy है। Retry "+
-(attempt+1)+
+"⏳ Gemini busy है। Retry " +
+(attempt+1) +
 "/3..."
 );
 
-
 await sleep(
-1500*attempt
+1500 * attempt
 );
 
 }
@@ -1887,10 +1615,8 @@ await sleep(
 
 }
 
-
 throw new Error(
-
-"GEMINI_FAILED: "+
+"GEMINI_FAILED: " +
 (
 lastError
 ?
@@ -1898,11 +1624,9 @@ lastError.message
 :
 "Unknown error"
 )
-
 );
 
 }
-
 
 
 /* =================================================
@@ -1911,28 +1635,20 @@ lastError.message
 
 async function askAI(q){
 
-const key=
-localStorage.getItem(
-KEY
-);
-
+const key =
+localStorage.getItem(KEY);
 
 if(!key){
 
-return(
+return (
 "🤖 AI के लिए Settings ⚙ में Gemini API key डालें।"
 );
 
 }
 
-
-return askGemini(
-q,
-key
-);
+return askGemini(q,key);
 
 }
-
 
 
 /* =================================================
@@ -1941,7 +1657,7 @@ key
 
 async function basic(q){
 
-const lower=
+const lower =
 q.toLowerCase().trim();
 
 
@@ -1952,7 +1668,7 @@ if(
 .test(lower)
 ){
 
-return(
+return (
 "Hello! मैं JARVIS हूँ। मैं आपकी कैसे मदद करूँ?"
 );
 
@@ -1966,19 +1682,16 @@ if(
 .test(lower)
 ){
 
-return(
-
-"अभी समय "+
-new Date()
-.toLocaleTimeString(
+return (
+"अभी समय " +
+new Date().toLocaleTimeString(
 "hi-IN",
 {
 hour:"2-digit",
 minute:"2-digit"
 }
-)+
+) +
 " है।"
-
 );
 
 }
@@ -1991,11 +1704,9 @@ if(
 .test(lower)
 ){
 
-return(
-
-"आज "+
-new Date()
-.toLocaleDateString(
+return (
+"आज " +
+new Date().toLocaleDateString(
 "hi-IN",
 {
 weekday:"long",
@@ -2003,9 +1714,8 @@ day:"numeric",
 month:"long",
 year:"numeric"
 }
-)+
+) +
 " है।"
-
 );
 
 }
@@ -2025,9 +1735,8 @@ return await weather(q);
 
 /* Calculator */
 
-const calc=
+const calc =
 calculator(q);
-
 
 if(calc)
 return calc;
@@ -2036,36 +1745,20 @@ return calc;
 /* Identity */
 
 if(
-
-lower.includes(
-"who are you"
-)
-
-||
-
-lower.includes(
-"तुम कौन हो"
-)
-
-||
-
-lower.includes(
-"आप कौन हो"
-)
-
+lower.includes("who are you") ||
+lower.includes("तुम कौन हो") ||
+lower.includes("आप कौन हो")
 ){
 
-return(
+return (
 "मैं JARVIS हूँ, आपका browser-based AI assistant।"
 );
 
 }
 
-
 return null;
 
 }
-
 
 
 /* =================================================
@@ -2074,122 +1767,86 @@ return null;
 
 async function send(){
 
-const input=
-document.getElementById(
-"input"
-);
+const input =
+document.getElementById("input");
 
-
-const question=
+const question =
 input.value.trim();
-
 
 if(!question)
 return;
-
 
 addMsg(
 question,
 "user"
 );
 
+input.value = "";
 
-input.value="";
-
-
-document.getElementById(
-"status"
-).textContent=
-"THINKING";
-
+document.getElementById("status")
+.textContent = "THINKING";
 
 try{
 
-let answer=
-await basic(
-question
-);
+let answer =
+await basic(question);
 
+if(answer === null){
 
-if(answer===null){
-
-answer=
-await askAI(
-question
-);
+answer =
+await askAI(question);
 
 }
 
-
-lastReply=
-answer;
-
+lastReply = answer;
 
 addMsg(
 answer,
 "bot"
 );
 
-
-speak(
-answer
-);
-
+speak(answer);
 
 }catch(error){
 
-let message="";
-
+let message = "";
 
 if(
-error.message===
-"API_KEY_ERROR"
+error.message === "API_KEY_ERROR"
 ){
 
-message=
+message =
+"❌ Gemini API key गलत है या permission नहीं है.\n\n" +
+"Settings ⚙ में API key दोबारा डालें।";
 
-"❌ Gemini API key गलत है या permission नहीं है.\n\nSettings ⚙ में API key दोबारा डालें।";
-
-}
-
-else if(
+}else if(
 error.message &&
 error.message.includes("404")
 ){
 
-message=
-
+message =
 "❌ Gemini model उपलब्ध नहीं है। बाद में फिर कोशिश करें।";
 
-}
-
-else if(
+}else if(
 error.message &&
 error.message.includes("429")
 ){
 
-message=
-
+message =
 "⚠️ Gemini request limit अभी पूरी हो गई है। थोड़ी देर बाद फिर कोशिश करें।";
 
-}
+}else{
 
-else{
-
-message=
-
-"⚠️ AI से जवाब नहीं मिला.\n\n"+
+message =
+"⚠️ AI से जवाब नहीं मिला.\n\n" +
 (
-error.message||
+error.message ||
 "Unknown error"
 );
 
 }
 
-
-lastReply=
-message;
-
+lastReply = message;
 
 addMsg(
 message,
@@ -2198,14 +1855,10 @@ message,
 
 }
 
-
-document.getElementById(
-"status"
-).textContent=
-"STANDING BY";
+document.getElementById("status")
+.textContent = "STANDING BY";
 
 }
-
 
 
 /* =================================================
@@ -2216,10 +1869,8 @@ function startMic(){
 
 if(
 !(
-"webkitSpeechRecognition"
-in window ||
-"SpeechRecognition"
-in window
+"webkitSpeechRecognition" in window ||
+"SpeechRecognition" in window
 )
 ){
 
@@ -2232,35 +1883,21 @@ return;
 
 }
 
-
-const SpeechRecognition=
-window.SpeechRecognition||
+const SpeechRecognition =
+window.SpeechRecognition ||
 window.webkitSpeechRecognition;
 
-
-recognition=
+recognition =
 new SpeechRecognition();
 
+recognition.lang = "hi-IN";
+recognition.interimResults = false;
+recognition.continuous = false;
 
-recognition.lang=
-"hi-IN";
+recognition.onstart = () => {
 
-
-recognition.interimResults=
-false;
-
-
-recognition.continuous=
-false;
-
-
-recognition.onstart=()=>{
-
-document.getElementById(
-"status"
-).textContent=
-"LISTENING...";
-
+document.getElementById("status")
+.textContent = "LISTENING...";
 
 setNotice(
 "🎙️ बोलिए... JARVIS सुन रहा है।"
@@ -2268,51 +1905,37 @@ setNotice(
 
 };
 
+recognition.onresult = e => {
 
-recognition.onresult=e=>{
+const text =
+e.results[0][0].transcript;
 
-const text=
-e.results[0][0]
-.transcript;
-
-
-document.getElementById(
-"input"
-).value=
-text;
-
+document.getElementById("input")
+.value = text;
 
 send();
 
 };
 
-
-recognition.onerror=e=>{
+recognition.onerror = e => {
 
 setNotice(
-"🎙️ Mic error: "+
-e.error+
+"🎙️ Mic error: " +
+e.error +
 "<br>Chrome में Microphone → Allow करें।"
 );
 
-
-document.getElementById(
-"status"
-).textContent=
-"STANDING BY";
+document.getElementById("status")
+.textContent = "STANDING BY";
 
 };
 
+recognition.onend = () => {
 
-recognition.onend=()=>{
-
-document.getElementById(
-"status"
-).textContent=
-"STANDING BY";
+document.getElementById("status")
+.textContent = "STANDING BY";
 
 };
-
 
 try{
 
@@ -2323,25 +1946,16 @@ recognition.start();
 }
 
 
-
 /* =================================================
    WAKE WORD
 ================================================= */
 
-function normalizeWakeText(
-text
-){
+function normalizeWakeText(text){
 
 return text
 .toLowerCase()
-.replace(
-/[.,!?।]/g,
-" "
-)
-.replace(
-/\s+/g,
-" "
-)
+.replace(/[.,!?।]/g," ")
+.replace(/\s+/g," ")
 .trim();
 
 }
@@ -2366,10 +1980,8 @@ function startWakeWord(){
 
 if(
 !(
-"webkitSpeechRecognition"
-in window ||
-"SpeechRecognition"
-in window
+"webkitSpeechRecognition" in window ||
+"SpeechRecognition" in window
 )
 ){
 
@@ -2382,63 +1994,39 @@ return;
 
 }
 
-
 if(wakeActive)
 return;
 
-
-const R=
-window.SpeechRecognition||
+const R =
+window.SpeechRecognition ||
 window.webkitSpeechRecognition;
 
-
-wakeRecognition=
+wakeRecognition =
 new R();
 
+wakeRecognition.lang = "hi-IN";
+wakeRecognition.continuous = true;
+wakeRecognition.interimResults = false;
 
-wakeRecognition.lang=
-"hi-IN";
+wakeActive = true;
 
+const button =
+document.getElementById("wakeBtn");
 
-wakeRecognition.continuous=
-true;
+button.textContent = "🔴 Wake ON";
 
-
-wakeRecognition.interimResults=
-false;
-
-
-wakeActive=
-true;
-
-
-const button=
-document.getElementById(
-"wakeBtn"
-);
-
-
-button.textContent=
-"🔴 Wake ON";
-
-
-button.classList.add(
-"wake-on"
-);
-
+button.classList.add("wake-on");
 
 setNotice(
 "🟢 Wake Word चालू है। “Hey JARVIS” या “हे जार्विस” बोलिए।"
 );
 
-
-document.getElementById(
-"status"
-).textContent=
+document.getElementById("status")
+.textContent =
 "WAITING FOR WAKE WORD";
 
 
-wakeRecognition.onresult=e=>{
+wakeRecognition.onresult = e => {
 
 for(
 let i=e.resultIndex;
@@ -2446,88 +2034,59 @@ i<e.results.length;
 i++
 ){
 
-if(
-!e.results[i].isFinal
-)
+if(!e.results[i].isFinal)
 continue;
 
+const text =
+e.results[i][0].transcript;
 
-const text=
-e.results[i][0]
-.transcript;
+const q =
+normalizeWakeText(text);
 
-
-const q=
-normalizeWakeText(
-text
-);
-
-
-const words=[
-
+const words = [
 "hey jarvis",
-
 "हे जार्विस",
-
 "हे जारविस",
-
 "jarvis",
-
 "जार्विस"
-
 ];
 
+let found = false;
 
-let found=false;
+for(const word of words){
 
+if(q.includes(word)){
 
-for(
-const word of words
-){
-
-if(
-q.includes(word)
-){
-
-found=true;
-
+found = true;
 break;
 
 }
 
 }
 
-
 if(!found)
 continue;
 
+let command = q;
 
-let command=q;
+words.forEach(word => {
 
-
-words.forEach(word=>{
-
-command=
+command =
 command
 .split(word)
 .join(" ");
 
 });
 
-
-command=
+command =
 command.trim();
-
 
 if(command){
 
-document.getElementById(
-"input"
-).value=
-command;
+document.getElementById("input")
+.value = command;
 
-
-setTimeout(()=>{
+setTimeout(() => {
 
 if(wakeActive)
 send();
@@ -2536,10 +2095,7 @@ send();
 
 }else{
 
-speak(
-"हाँ, बोलिए"
-);
-
+speak("हाँ, बोलिए");
 
 setNotice(
 "🎙️ हाँ, बोलिए... JARVIS सुन रहा है।"
@@ -2552,15 +2108,13 @@ setNotice(
 };
 
 
-wakeRecognition.onerror=e=>{
+wakeRecognition.onerror = e => {
 
 if(!wakeActive)
 return;
 
-
 if(
-e.error===
-"not-allowed"
+e.error === "not-allowed"
 ){
 
 setNotice(
@@ -2573,9 +2127,8 @@ return;
 
 }
 
-
 if(
-e.error!=="aborted"
+e.error !== "aborted"
 ){
 
 restartWakeWord();
@@ -2585,7 +2138,7 @@ restartWakeWord();
 };
 
 
-wakeRecognition.onend=()=>{
+wakeRecognition.onend = () => {
 
 if(wakeActive){
 
@@ -2594,7 +2147,6 @@ restartWakeWord();
 }
 
 };
-
 
 try{
 
@@ -2614,17 +2166,15 @@ function restartWakeWord(){
 if(!wakeActive)
 return;
 
-
 clearTimeout(
 wakeRestartTimer
 );
 
-wakeRestartTimer=
-setTimeout(()=>{
+wakeRestartTimer =
+setTimeout(() => {
 
 if(!wakeActive)
 return;
-
 
 try{
 
@@ -2643,52 +2193,41 @@ restartWakeWord();
 
 function stopWakeWord(){
 
-wakeActive=false;
-
+wakeActive = false;
 
 clearTimeout(
 wakeRestartTimer
 );
 
-
 if(wakeRecognition){
 
 try{
 
-wakeRecognition.onend=null;
-
-wakeRecognition.onerror=null;
-
+wakeRecognition.onend = null;
+wakeRecognition.onerror = null;
 wakeRecognition.stop();
 
 }catch(e){}
 
 }
 
+wakeRecognition = null;
 
-wakeRecognition=null;
 
+/* FIXED:
+   const button =
+   document.getElementById("wakeBtn");
+*/
 
 const button =
-document.getElementById(
-"wakeBtn"
-);
+document.getElementById("wakeBtn");
 
+button.textContent = "🟢 Wake";
 
-button.textContent=
-"🟢 Wake";
+button.classList.remove("wake-on");
 
-
-button.classList.remove(
-"wake-on"
-);
-
-
-document.getElementById(
-"status"
-).textContent=
-"STANDING BY";
-
+document.getElementById("status")
+.textContent = "STANDING BY";
 
 setNotice(
 "🎙️ Wake Word बंद है।"
@@ -2697,45 +2236,34 @@ setNotice(
 }
 
 
-
 /* =================================================
    CAMERA / PHOTO
 ================================================= */
 
 function onPhoto(input){
 
-const file=
+const file =
 input.files &&
 input.files[0];
 
-
-input.value="";
-
+input.value = "";
 
 if(!file)
 return;
 
-
-const question=
-document.getElementById(
-"input"
-).value.trim()
+const question =
+document.getElementById("input")
+.value.trim()
 ||
 "इस फोटो में क्या है?";
 
-
 addMsg(
-"📷 "+
-question,
+"📷 " + question,
 "user"
 );
 
-
-const key=
-localStorage.getItem(
-KEY
-);
-
+const key =
+localStorage.getItem(KEY);
 
 if(!key){
 
@@ -2748,34 +2276,35 @@ return;
 
 }
 
-
-const reader=
+const reader =
 new FileReader();
 
-
-reader.onload=
+reader.onload =
 async function(){
 
 try{
 
-const base64=
+const base64 =
 reader.result
 .split(",")[1];
 
-
-const response=
+const response =
 await fetch(
 
-GEMINI_URL+
-"/gemini-2.5-flash:generateContent?key="+
+GEMINI_URL +
+"/gemini-2.5-flash:generateContent?key=" +
 encodeURIComponent(key),
 
 {
 
 method:"POST",
 
-"Content-Type":
-"application/json"
+/* FIXED:
+   पहले यहाँ n"Content-Type" था
+*/
+
+headers:{
+"Content-Type":"application/json"
 },
 
 body:JSON.stringify({
@@ -2822,26 +2351,22 @@ base64
 if(!response.ok){
 
 throw new Error(
-"PHOTO_HTTP_"+response.status
+"PHOTO_HTTP_" +
+response.status
 );
 
 }
 
-
-const data=
+const data =
 await response.json();
 
-
-const answer=
+const answer =
 data
 .candidates?.[0]
 ?.content
 ?.parts
-?.map(
-p=>p.text||""
-)
+?.map(p => p.text || "")
 .join("");
-
 
 if(!answer){
 
@@ -2851,21 +2376,14 @@ throw new Error(
 
 }
 
-
-lastReply=
-answer;
-
+lastReply = answer;
 
 addMsg(
 answer,
 "bot"
 );
 
-
-speak(
-answer
-);
-
+speak(answer);
 
 }catch(error){
 
@@ -2881,36 +2399,26 @@ addMsg(
 
 };
 
-
-reader.readAsDataURL(
-file
-);
+reader.readAsDataURL(file);
 
 }
 
 
-
 /* =================================================
-   START
+   START APP
 ================================================= */
 
 if(!loadChat()){
 
 addMsg(
-
 "Hello! मैं JARVIS हूँ। मैं आपकी कैसे मदद करूँ?",
-
 "bot",
-
 true
-
 );
 
 }
 
 </script>
 
-
 </body>
-
 </html>
