@@ -1151,7 +1151,8 @@ return null;
 
 }
 
-
+const app=openApp(lower);
+if(app)return app;
 /* =================================================
    WEATHER
 ================================================= */
@@ -1918,7 +1919,30 @@ send();
 };
 
 recognition.onerror = e => {
-
+function openApp(lower){
+ const apps=[
+  {n:"WhatsApp",k:["whatsapp","व्हाट्सएप","व्हाट्सऐप","वाट्सएप"],u:"intent://send/#Intent;scheme=whatsapp;package=com.whatsapp;S.browser_fallback_url="+encodeURIComponent("https://wa.me/")+";end"},
+  {n:"YouTube",k:["youtube","यूट्यूब","यू ट्यूब"],u:"https://www.youtube.com/"},
+  {n:"Google Maps",k:["maps","मैप"],u:"https://www.google.com/maps"},
+  {n:"ChatGPT",k:["chatgpt","चैटजीपीटी"],u:"https://chatgpt.com/"},
+  {n:"Claude",k:["claude","क्लाउड"],u:"https://claude.ai/"}
+ ];
+ if(!/(open|ओपन|खोल|चालू|start|launch)/.test(lower))return null;
+ const a=apps.find(x=>x.k.some(w=>lower.includes(w)));
+ if(!a)return null;
+ setTimeout(()=>{
+  const d=document.getElementById("chat").lastElementChild;
+  if(d){
+   const b=document.createElement("button");
+   b.className="replay";
+   b.textContent="▶ "+a.n+" खोलें";
+   b.onclick=()=>{location.href=a.u};
+   d.appendChild(b);
+  }
+  try{location.href=a.u}catch(e){}
+ },600);
+ return a.n+" खोल रहा हूँ…";
+   }
 setNotice(
 "🎙️ Mic error: " +
 e.error +
