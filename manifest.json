@@ -1,0 +1,13 @@
+{
+  "background_color": "#0a0f1a",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "J.A.R.V.I.S. Mobile Ai",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "JARVIS AI",
+  "start_url": "/",
+  "theme_color": "#00c8ff",
+  "id": "Jarvis-ai",
+  "description": "J.A.R.V.I.S. is an AI assistant for chat, voice commands, calculator and useful tools."
+}
