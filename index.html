@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-
 <meta charset="UTF-8">
 
 <meta name="viewport"
@@ -10,41 +9,41 @@ content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>J.A.R.V.I.S. Mobile AI</title>
 
 <style>
-
-*{
-box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
 margin:0;
-background:#0a2a5e;
-color:#d9f7ff;
+background:#faf9f5;
+color:#1f1e1d;
 font-family:Arial,sans-serif;
 }
 
 header{
-height:74px;
-border-bottom:1px solid #12334a;
+height:64px;
 display:flex;
 align-items:center;
-padding:0 10px;
 gap:6px;
+padding:0 10px;
+border-bottom:1px solid #eceae2;
+background:#faf9f5;
+overflow:hidden;
 }
 
 .logo{
-color:#21d9ff;
+color:#1f1e1d;
 font-weight:700;
 letter-spacing:4px;
-font-size:18px;
-flex:1;
+font-size:16px;
+white-space:nowrap;
+margin-right:auto;
 }
 
 button{
-border:1px solid #16405c;
-background:#071827;
-color:#d9f7ff;
+border:1px solid #e5e2d8;
+background:#f0eee6;
+color:#1f1e1d;
 border-radius:12px;
-padding:11px 13px;
+padding:10px 12px;
 font-size:14px;
 }
 
@@ -52,231 +51,10 @@ button:active{
 transform:scale(.97);
 }
 
-.gear{
-font-size:20px;
-}
-
-main{
-max-width:760px;
-margin:auto;
-padding:22px 15px 105px;
-}
-
-.orb{
-width:145px;
-height:145px;
-margin:5px auto 20px;
-border-radius:50%;
-background:
-radial-gradient(
-circle at 35% 30%,
-#8cf5ff,
-#14c7ec 55%,
-#08738f
-);
-box-shadow:0 0 45px #00d9ff66;
-}
-
-.status{
-text-align:center;
-letter-spacing:4px;
-color:#91aabb;
-margin-bottom:18px;
-font-size:14px;
-}
-
-.notice{
-background:#071827;
-border:1px solid #16405c;
-border-radius:12px;
-padding:12px;
-margin-bottom:15px;
-color:#ff8d8d;
-font-size:14px;
-line-height:1.5;
-}
-
-.chat{
-display:flex;
-flex-direction:column;
-gap:12px;
-}
-
-.msg{
-max-width:90%;
-padding:14px 16px;
-border-radius:16px;
-line-height:1.45;
-white-space:pre-wrap;
-word-break:break-word;
-}
-
-.user{
-align-self:flex-end;
-background:#0d3655;
-}
-
-.bot{
-align-self:flex-start;
-background:#071827;
-border:1px solid #123c58;
-}
-
-.replay{
-font-size:13px;
-padding:7px 12px;
-margin-top:9px;
-}
-
-.del{
-font-size:13px;
-padding:7px 12px;
-margin-top:9px;
-margin-left:8px;
-}
-
-.bottom{
-position:fixed;
-bottom:0;
-left:0;
-right:0;
-background:#0a2a5e;
-border-top:1px solid #12334a;
-padding:10px;
-display:flex;
-gap:8px;
-z-index:4;
-}
-
-.mic{
-width:46px;
-background:#16d3f5;
-color:#00141c;
-font-size:19px;
-padding:11px 0;
-}
-
-.input{
-flex:1;
-min-width:0;
-background:#071827;
-border:1px solid #16405c;
-border-radius:14px;
-color:white;
-padding:0 14px;
-font-size:16px;
-}
-
-.send{
-background:#16d3f5;
-color:#00141c;
-font-weight:bold;
-min-width:64px;
-padding:11px 10px;
-}
-
-.modal{
-display:none;
-position:fixed;
-inset:0;
-background:#000b;
-z-index:10;
-padding:20px;
-overflow:auto;
-}
-
-.panel{
-max-width:600px;
-margin:40px auto;
-background:#061522;
-border:1px solid #1b5573;
-border-radius:16px;
-padding:18px;
-}
-
-.panel input{
-width:100%;
-padding:13px;
-border-radius:10px;
-border:1px solid #25506a;
-background:#020912;
-color:#fff;
-margin:8px 0 12px;
-}
-
-.small{
-font-size:12px;
-color:#8ca8b8;
-line-height:1.5;
-}
-
-.ok{
-background:#16d3f5;
-color:#00141c;
-font-weight:bold;
-}
-
-.close{
-float:right;
-}
-
-.wake-on{
-background:#16d3f5!important;
-color:#00141c!important;
-}
-
-hr{
-border:0;
-border-top:1px solid #163d55;
-margin:18px 0;
-}
-
-.contact{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:8px;
-padding:8px 0;
-border-bottom:1px solid #163d55;
-}
-
-.contact button{
-padding:6px 10px;
-}
-
-</style>
-
-
-<style>
-
-/* ===== LIGHT CHAT THEME (Claude-style) ===== */
-
-body{
-background:#faf9f5;
-color:#1f1e1d;
-}
-
-header{
-height:64px;
-background:#faf9f5;
-border-bottom:1px solid #eceae2;
-}
-
-.logo{
-color:#1f1e1d;
-letter-spacing:5px;
-font-size:17px;
-text-shadow:none;
-}
-
-button{
-background:#f0eee6;
-border:1px solid #e5e2d8;
-color:#1f1e1d;
-}
-
 header button{
 background:transparent;
+height:40px;
+padding:6px 10px;
 }
 
 .wake-on{
@@ -286,28 +64,36 @@ border-color:#1f1e1d!important;
 }
 
 main{
-padding-bottom:190px;
+max-width:760px;
+margin:auto;
+padding:18px 15px 190px;
 }
 
 .orb{
 width:72px;
 height:72px;
-margin:6px auto 12px;
+margin:5px auto 12px;
 border-radius:50%;
-border:none;
-background:radial-gradient(circle at 35% 30%,#ffffff,#8fd8ff 40%,#2a6df4 100%);
+background:
+radial-gradient(
+circle at 35% 30%,
+#ffffff,
+#8fd8ff 40%,
+#2a6df4 100%
+);
 box-shadow:0 4px 22px #2a6df455;
 animation:orbPulse 3s ease-in-out infinite;
 }
 
 @keyframes orbPulse{
-0%,100%{transform:scale(1);}
-50%{transform:scale(1.07);}
+0%,100%{transform:scale(1)}
+50%{transform:scale(1.07)}
 }
 
 .status{
-color:#8a867c;
+text-align:center;
 letter-spacing:3px;
+color:#8a867c;
 font-size:12px;
 margin-bottom:16px;
 }
@@ -315,25 +101,37 @@ margin-bottom:16px;
 .notice{
 background:#f0eee6;
 border:1px solid #e5e2d8;
+border-radius:12px;
+padding:12px;
+margin-bottom:15px;
 color:#6b675d;
+font-size:14px;
+line-height:1.5;
 }
 
 .chat{
+display:flex;
+flex-direction:column;
 gap:16px;
 }
 
 .msg{
 max-width:92%;
+padding:12px 16px;
+border-radius:20px;
+line-height:1.55;
+white-space:pre-wrap;
+word-break:break-word;
 }
 
 .user{
+align-self:flex-end;
 background:#efede4;
 color:#1f1e1d;
-border-radius:20px;
-padding:12px 16px;
 }
 
 .bot{
+align-self:flex-start;
 background:transparent;
 border:none;
 color:#1f1e1d;
@@ -345,25 +143,33 @@ max-width:100%;
 background:transparent;
 border:1px solid #e5e2d8;
 color:#555;
+font-size:13px;
+padding:6px 10px;
+margin-top:7px;
+margin-right:6px;
 }
 
-/* BOTTOM COMPOSER */
-
 .bottom{
-display:block;
+position:fixed;
+bottom:0;
+left:0;
+right:0;
 padding:8px 12px 12px;
-background:linear-gradient(rgba(250,249,245,0),#faf9f5 30%);
-border:none;
+background:linear-gradient(
+rgba(250,249,245,0),
+#faf9f5 30%
+);
+z-index:4;
 }
 
 .composer{
 position:relative;
 max-width:760px;
 margin:auto;
-background:#ffffff;
+background:#fff;
 border:1px solid #e5e2d8;
 border-radius:26px;
-padding:8px 12px 8px;
+padding:8px 12px;
 box-shadow:0 2px 14px rgba(0,0,0,.08);
 }
 
@@ -396,7 +202,6 @@ height:40px;
 border-radius:50%;
 padding:0;
 font-size:20px;
-line-height:1;
 background:#f0eee6;
 border:none;
 color:#1f1e1d;
@@ -404,7 +209,7 @@ color:#1f1e1d;
 
 .sendb{
 background:#1f1e1d;
-color:#ffffff;
+color:#fff;
 font-weight:bold;
 }
 
@@ -415,7 +220,7 @@ left:8px;
 bottom:64px;
 flex-direction:column;
 gap:2px;
-background:#ffffff;
+background:#fff;
 border:1px solid #e5e2d8;
 border-radius:16px;
 padding:6px;
@@ -431,51 +236,128 @@ font-size:15px;
 white-space:nowrap;
 }
 
-/* SETTINGS */
-
 .modal{
+display:none;
+position:fixed;
+inset:0;
 background:rgba(0,0,0,.35);
+z-index:10;
+padding:20px;
+overflow:auto;
 }
 
 .panel{
-background:#ffffff;
+max-width:600px;
+margin:30px auto;
+background:#fff;
 border:1px solid #e5e2d8;
+border-radius:16px;
+padding:18px;
 color:#1f1e1d;
 }
 
 .panel input{
-background:#faf9f5;
+width:100%;
+padding:13px;
+border-radius:10px;
 border:1px solid #e5e2d8;
+background:#faf9f5;
 color:#1f1e1d;
+margin:8px 0 12px;
+outline:none;
+}
+
+.small{
+font-size:12px;
+color:#6b675d;
+line-height:1.5;
 }
 
 .ok{
 background:#1f1e1d;
-color:#ffffff;
+color:#fff;
+font-weight:bold;
 border:none;
 }
 
-.small{
-color:#6b675d;
+.close{
+float:right;
 }
 
 hr{
+border:0;
 border-top:1px solid #eceae2;
+margin:18px 0;
+}
+
+/* QUICK APPS */
+
+.quick-title{
+font-size:14px;
+font-weight:bold;
+margin:15px 0 9px;
+color:#555;
+}
+
+.quick-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:8px;
+}
+
+.quick-btn{
+min-height:64px;
+padding:7px 4px;
+background:#fff;
+border:1px solid #e5e2d8;
+border-radius:14px;
+font-size:12px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:4px;
+}
+
+.quick-icon{
+font-size:22px;
+}
+
+.command-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:8px;
+}
+
+.command-grid button{
+padding:12px 8px;
 }
 
 .contact{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:8px;
+padding:8px 0;
 border-bottom:1px solid #eceae2;
 }
 
+.contact button{
+padding:6px 10px;
+}
 
-header{display:flex;align-items:center;gap:6px;padding:0 10px;overflow:hidden;}
-header button{padding:6px 10px;font-size:14px;height:40px;}
-.logo{font-size:15px;letter-spacing:3px;white-space:nowrap;margin-right:auto;}
-.bot{display:block;line-height:1.6;}
-.bot button,.user button{margin-top:6px;margin-right:6px;padding:4px 10px;font-size:13px;}
-.user{display:block;}
+.photo{
+max-width:100%;
+border-radius:14px;
+margin-top:8px;
+}
+
+@media(max-width:400px){
+.quick-grid{
+grid-template-columns:repeat(3,1fr);
+}
+}
 </style>
-
 </head>
 
 <body>
@@ -501,7 +383,6 @@ onclick="toggleWakeWord()">
 </button>
 
 <button
-class="gear"
 onclick="openSettings()">
 ⚙
 </button>
@@ -518,25 +399,79 @@ STANDING BY
 
 <div id="notice" class="notice">
 
-🎙️ Mic दबाकर Chrome में Microphone → Allow करें।<br>
-
+🎙️ Mic दबाकर बोलें।<br>
 🤖 AI के लिए Settings ⚙ में Gemini API key डालें।<br>
-
 🟢 Wake दबाकर “Hey JARVIS” या “हे जार्विस” बोलें।<br>
+🌦️ बोलें: “Ballia weather”<br>
+🧮 बोलें: “52 plus 24 minus 2”<br>
+⚡ नीचे Quick Apps से app खोलें।
 
-🌦️ Weather:
-“Ballia weather” बोलें।<br>
+</div>
 
-🧮 Calculator:
-“52 plus 24 minus 2” बोलें।<br>
+<!-- QUICK APPS MAIN SCREEN -->
 
-➕ दबाकर कैमरे से फोटो खींचें या गैलरी से फोटो चुनें।
+<div class="quick-title">
+⚡ Quick Apps
+</div>
+
+<div class="quick-grid">
+
+<button class="quick-btn"
+onclick="openApp('youtube')">
+<span class="quick-icon">▶️</span>
+YouTube
+</button>
+
+<button class="quick-btn"
+onclick="openApp('whatsapp')">
+<span class="quick-icon">💬</span>
+WhatsApp
+</button>
+
+<button class="quick-btn"
+onclick="openApp('maps')">
+<span class="quick-icon">🗺️</span>
+Maps
+</button>
+
+<button class="quick-btn"
+onclick="openApp('chatgpt')">
+<span class="quick-icon">🤖</span>
+ChatGPT
+</button>
+
+<button class="quick-btn"
+onclick="openApp('gmail')">
+<span class="quick-icon">✉️</span>
+Gmail
+</button>
+
+<button class="quick-btn"
+onclick="openApp('instagram')">
+<span class="quick-icon">📷</span>
+Instagram
+</button>
+
+<button class="quick-btn"
+onclick="openApp('facebook')">
+<span class="quick-icon">📘</span>
+Facebook
+</button>
+
+<button class="quick-btn"
+onclick="openApp('chrome')">
+<span class="quick-icon">🌐</span>
+Chrome
+</button>
 
 </div>
 
 <div id="chat" class="chat"></div>
 
 </main>
+
+
+<!-- BOTTOM -->
 
 <div class="bottom">
 
@@ -603,6 +538,7 @@ onchange="onPhoto(this)">
 
 </div>
 
+
 <!-- SETTINGS -->
 
 <div id="modal" class="modal">
@@ -635,23 +571,60 @@ Save Key
 </button>
 
 <p class="small">
-
-Gemini API key आपके browser के local storage
-में रखी जाती है। इसे किसी के साथ share न करें।
-
+Gemini API key browser के local storage में रखी जाती है।
+इसे किसी के साथ share न करें।
 </p>
- 
+
 <hr>
-  <h3>Quick Commands</h3>
-  <div class="command-grid">
-   <button onclick="quickCommand('YouTube खोलो')">▶️ YouTube</button>
-   <button onclick="quickCommand('WhatsApp खोलो')">💬 WhatsApp</button>
-   <button onclick="quickCommand('Google Maps खोलो')">🗺️ Maps</button>
-   <button onclick="quickCommand('ChatGPT खोलो')">🤖 ChatGPT</button>
-   <button onclick="quickCommand('आज की तारीख बताओ')">📅 Date</button>
-   <button onclick="quickCommand('अभी समय बताओ')">🕐 Time</button>
-  </div>
-   
+
+<h3>
+⚡ Quick Commands
+</h3>
+
+<div class="command-grid">
+
+<button onclick="quickCommand('YouTube खोलो')">
+▶️ YouTube
+</button>
+
+<button onclick="quickCommand('WhatsApp खोलो')">
+💬 WhatsApp
+</button>
+
+<button onclick="quickCommand('Google Maps खोलो')">
+🗺️ Maps
+</button>
+
+<button onclick="quickCommand('ChatGPT खोलो')">
+🤖 ChatGPT
+</button>
+
+<button onclick="quickCommand('Gmail खोलो')">
+✉️ Gmail
+</button>
+
+<button onclick="quickCommand('Instagram खोलो')">
+📷 Instagram
+</button>
+
+<button onclick="quickCommand('Facebook खोलो')">
+📘 Facebook
+</button>
+
+<button onclick="quickCommand('Chrome खोलो')">
+🌐 Chrome
+</button>
+
+<button onclick="quickCommand('आज की तारीख बताओ')">
+📅 Date
+</button>
+
+<button onclick="quickCommand('अभी समय बताओ')">
+🕐 Time
+</button>
+
+</div>
+
 <hr>
 
 <h3>
@@ -679,20 +652,19 @@ Add Contact
 
 <button
 onclick="clearHistory();closeSettings();setNotice('🗑 Chat history मिटा दी गई।')">
-
 🗑 Chat History मिटाएँ
-
 </button>
 
 </div>
 
 </div>
 
+
 <script>
 
-/* =================================================
-   VARIABLES
-================================================= */
+/* =========================
+VARIABLES
+========================= */
 
 const KEY = "jarvis_gemini_key";
 const CHAT_KEY = "jarvis_chat";
@@ -708,9 +680,9 @@ let wakeActive = false;
 let wakeRestartTimer = null;
 
 
-/* =================================================
-   GEMINI MODELS
-================================================= */
+/* =========================
+GEMINI
+========================= */
 
 const GEMINI_MODELS = [
 "gemini-2.5-flash",
@@ -721,318 +693,159 @@ const GEMINI_URL =
 "https://generativelanguage.googleapis.com/v1beta/models";
 
 
-/* =================================================
-   APP ICON
-================================================= */
+/* =========================
+QUICK COMMAND
+========================= */
 
-(function(){
+function quickCommand(text){
 
-try{
+closeSettings();
 
-const svg = `
-<svg xmlns="http://www.w3.org/2000/svg"
-viewBox="0 0 512 512">
+document.getElementById("input").value = text;
 
-<defs>
+setTimeout(function(){
 
-<radialGradient id="g">
+send();
 
-<stop offset="0" stop-color="#8cf5ff"/>
-<stop offset=".55" stop-color="#14c7ec"/>
-<stop offset="1" stop-color="#06396b"/>
-
-</radialGradient>
-
-<filter id="glow">
-
-<feGaussianBlur
-stdDeviation="12"
-result="b"/>
-
-<feMerge>
-
-<feMergeNode in="b"/>
-<feMergeNode in="SourceGraphic"/>
-
-</feMerge>
-
-</filter>
-
-</defs>
-
-<rect
-width="512"
-height="512"
-rx="110"
-fill="#3a0a0e"/>
-
-<circle
-cx="256"
-cy="256"
-r="155"
-fill="url(#g)"
-filter="url(#glow)"/>
-
-<circle
-cx="256"
-cy="256"
-r="105"
-fill="none"
-stroke="#ffd54a"
-stroke-width="9"/>
-
-<path
-d="M180 260 Q256 185 332 260 Q256 335 180 260Z"
-fill="none"
-stroke="#ffffff"
-stroke-width="10"/>
-
-<circle
-cx="256"
-cy="260"
-r="24"
-fill="#ffffff"/>
-
-<path
-d="M145 145 L185 185
-M367 145 L327 185
-M145 367 L185 327
-M367 367 L327 327"
-stroke="#ffb300"
-stroke-width="12"
-stroke-linecap="round"/>
-
-</svg>
-`;
-
-const icon =
-"data:image/svg+xml;base64," +
-btoa(unescape(encodeURIComponent(svg)));
-
-const favicon =
-document.createElement("link");
-
-favicon.rel = "icon";
-favicon.type = "image/svg+xml";
-favicon.href = icon;
-
-document.head.appendChild(favicon);
-
-}catch(e){}
-
-})();
-
-
-/* =================================================
-   CHAT LOG DELETE
-================================================= */
-
-function dropLog(el, who){
-
-const t =
-el.firstChild &&
-el.firstChild.nodeValue;
-
-const i =
-LOG.findIndex(
-m => m.t === t && m.w === who
-);
-
-if(i > -1){
-
-LOG.splice(i,1);
-
-}
+},100);
 
 }
 
 
-/* =================================================
-   ADD MESSAGE
-================================================= */
+/* =========================
+QUICK APP OPEN
+========================= */
 
-function addMsg(
-text,
-who="bot",
-noSave=false
-){
+function openApp(app){
 
-const d =
-document.createElement("div");
+let url = "";
 
-d.className =
-"msg " + who;
+let intent = "";
 
-d.textContent = text;
+switch(app){
+
+case "youtube":
+
+url = "https://www.youtube.com/";
+intent =
+"intent://www.youtube.com/#Intent;scheme=https;package=com.google.android.youtube;end";
+
+break;
 
 
-/* Replay button */
+case "whatsapp":
 
-if(who === "bot"){
+intent =
+"intent://send/#Intent;scheme=whatsapp;package=com.whatsapp;end";
 
-const replay =
-document.createElement("button");
+url = "https://web.whatsapp.com/";
 
-replay.className = "replay";
+break;
 
-replay.textContent = "🔊 Replay";
 
-replay.onclick = () => {
+case "maps":
 
-speak(text);
+url =
+"https://www.google.com/maps/";
 
-};
+intent =
+"intent://maps.google.com/#Intent;scheme=https;package=com.google.android.apps.maps;end";
 
-d.appendChild(replay);
+break;
+
+
+case "chatgpt":
+
+url =
+"https://chatgpt.com/";
+
+break;
+
+
+case "gmail":
+
+intent =
+"intent://#Intent;scheme=googlegmail;package=com.google.android.gm;end";
+
+url =
+"https://mail.google.com/";
+
+break;
+
+
+case "instagram":
+
+intent =
+"intent://instagram.com/#Intent;scheme=https;package=com.instagram.android;end";
+
+url =
+"https://www.instagram.com/";
+
+break;
+
+
+case "facebook":
+
+intent =
+"intent://facebook.com/#Intent;scheme=https;package=com.facebook.katana;end";
+
+url =
+"https://www.facebook.com/";
+
+break;
+
+
+case "chrome":
+
+intent =
+"intent://www.google.com/#Intent;scheme=https;package=com.android.chrome;end";
+
+url =
+"https://www.google.com/";
+
+break;
 
 }
 
 
-/* Edit button for user */
-
-if(
-who === "user" &&
-!text.startsWith("📷")
-){
-
-const ed =
-document.createElement("button");
-
-ed.className = "del";
-
-ed.textContent = "✏️";
-
-ed.onclick = () => {
-
-const nx =
-d.nextElementSibling;
-
-if(
-nx &&
-nx.classList.contains("bot")
-){
-
-dropLog(nx,"bot");
-
-nx.remove();
-
-}
-
-dropLog(d,"user");
-
-d.remove();
-
-saveChat();
-
-const inp =
-document.getElementById("input");
-
-inp.value = text;
-
-inp.focus();
-
-};
-
-d.appendChild(ed);
-
-}
-
-
-/* Delete button */
-
-const del =
-document.createElement("button");
-
-del.className = "del";
-
-del.textContent = "🗑";
-
-del.onclick = () => {
-
-dropLog(d,who);
-
-d.remove();
-
-saveChat();
-
-};
-
-d.appendChild(del);
-
-
-document
-.getElementById("chat")
-.appendChild(d);
-
-
-window.scrollTo(
-0,
-document.body.scrollHeight
+setNotice(
+"🚀 " + app.toUpperCase() + " खोल रहा हूँ..."
 );
 
 
-if(!noSave){
+/* Try Android app */
 
-LOG.push({
-t:text,
-w:who
-});
-
-saveChat();
-
-}
-
-return d;
-
-}
-
-
-/* =================================================
-   SPEECH
-================================================= */
-
-function speak(text){
-
-if(
-typeof speechSynthesis === "undefined"
-)
-return;
+if(intent){
 
 try{
 
-speechSynthesis.cancel();
-
-const u =
-new SpeechSynthesisUtterance(text);
-
-u.lang =
-/[\u0900-\u097F]/.test(text)
-?
-"hi-IN"
-:
-"en-IN";
-
-u.rate = 0.95;
-
-speechSynthesis.speak(u);
+location.href = intent;
 
 }catch(e){}
 
 }
 
 
-function speakSir(text){
+/* Fallback */
 
-const hindi =
-/[\u0900-\u097F]/.test(text);
+setTimeout(function(){
 
-speak(
-(hindi ? "जी सर। " : "Yes sir. ") +
-text
-);
+try{
+
+if(url){
+window.location.href = url;
+}
+
+}catch(e){}
+
+},800);
 
 }
 
+
+/* =========================
+PLUS MENU
+========================= */
 
 function togglePlus(){
 
@@ -1053,6 +866,38 @@ function hidePlus(){
 
 document.getElementById("plusMenu")
 .style.display = "none";
+
+}
+
+
+/* =========================
+SPEECH
+========================= */
+
+function speak(text){
+
+if(typeof speechSynthesis === "undefined")
+return;
+
+try{
+
+speechSynthesis.cancel();
+
+const u =
+new SpeechSynthesisUtterance(text);
+
+u.lang =
+/[\u0900-\u097F]/.test(text)
+?
+"hi-IN"
+:
+"en-IN";
+
+u.rate = .95;
+
+speechSynthesis.speak(u);
+
+}catch(e){}
 
 }
 
@@ -1079,22 +924,21 @@ speak(lastReply);
 }
 
 
-/* =================================================
-   NOTICE
-================================================= */
+/* =========================
+NOTICE
+========================= */
 
 function setNotice(text){
 
-document.getElementById(
-"notice"
-).innerHTML = text;
+document.getElementById("notice")
+.innerHTML = text;
 
 }
 
 
-/* =================================================
-   SETTINGS
-================================================= */
+/* =========================
+SETTINGS
+========================= */
 
 function openSettings(){
 
@@ -1127,28 +971,138 @@ if(key){
 
 localStorage.setItem(KEY,key);
 
+setNotice("✅ Gemini API key saved.");
+
 }else{
 
 localStorage.removeItem(KEY);
+
+setNotice("ℹ️ Gemini API key हटाई गई।");
 
 }
 
 closeSettings();
 
-setNotice(
-key
-?
-"✅ Gemini API key saved."
-:
-"ℹ️ Gemini API key हटाई गई।"
-);
+}
+
+
+/* =========================
+CHAT
+========================= */
+
+function addMsg(
+text,
+who="bot",
+noSave=false
+){
+
+const d =
+document.createElement("div");
+
+d.className =
+"msg " + who;
+
+d.textContent = text;
+
+
+if(who === "bot"){
+
+const replay =
+document.createElement("button");
+
+replay.className = "replay";
+
+replay.textContent = "🔊 Replay";
+
+replay.onclick = function(){
+
+speak(text);
+
+};
+
+d.appendChild(replay);
 
 }
 
 
-/* =================================================
-   CHAT HISTORY
-================================================= */
+if(who === "user"){
+
+const edit =
+document.createElement("button");
+
+edit.className = "del";
+
+edit.textContent = "✏️";
+
+edit.onclick = function(){
+
+document.getElementById("input")
+.value = text;
+
+d.remove();
+
+saveChat();
+
+};
+
+d.appendChild(edit);
+
+}
+
+
+const del =
+document.createElement("button");
+
+del.className = "del";
+
+del.textContent = "🗑";
+
+del.onclick = function(){
+
+d.remove();
+
+LOG = LOG.filter(function(x){
+
+return !(x.t === text && x.w === who);
+
+});
+
+saveChat();
+
+};
+
+d.appendChild(del);
+
+
+document.getElementById("chat")
+.appendChild(d);
+
+
+window.scrollTo(
+0,
+document.body.scrollHeight
+);
+
+
+if(!noSave){
+
+LOG.push({
+t:text,
+w:who
+});
+
+saveChat();
+
+}
+
+return d;
+
+}
+
+
+/* =========================
+CHAT STORAGE
+========================= */
 
 function saveChat(){
 
@@ -1158,8 +1112,8 @@ localStorage.setItem(
 CHAT_KEY,
 JSON.stringify({
 
-log: LOG.slice(-60),
-hist: HIST.slice(-12)
+log:LOG.slice(-60),
+hist:HIST.slice(-12)
 
 })
 );
@@ -1175,16 +1129,17 @@ try{
 
 const data =
 JSON.parse(
-localStorage.getItem(CHAT_KEY)
-|| "null"
+localStorage.getItem(CHAT_KEY) || "null"
 );
 
-if(
-data &&
-Array.isArray(data.log)
-){
+if(data){
 
-LOG = data.log;
+LOG =
+Array.isArray(data.log)
+?
+data.log
+:
+[];
 
 HIST =
 Array.isArray(data.hist)
@@ -1193,7 +1148,7 @@ data.hist
 :
 [];
 
-LOG.forEach(item => {
+LOG.forEach(function(item){
 
 addMsg(
 item.t,
@@ -1220,235 +1175,71 @@ LOG = [];
 HIST = [];
 lastReply = "";
 
-try{
-
 localStorage.removeItem(CHAT_KEY);
 
-}catch(e){}
-
-document.getElementById(
-"chat"
-).innerHTML = "";
+document.getElementById("chat")
+.innerHTML = "";
 
 }
 
 
-/* =================================================
-   WHATSAPP CONTACTS
-================================================= */
-
-function getContacts(){
-
-try{
-
-return JSON.parse(
-localStorage.getItem(CONTACT_KEY)
-|| "{}"
-);
-
-}catch(e){
-
-return {};
-
-}
-
-}
-
-
-function saveContacts(c){
-
-try{
-
-localStorage.setItem(
-CONTACT_KEY,
-JSON.stringify(c)
-);
-
-}catch(e){}
-
-}
-
-
-function renderContacts(){
-
-const list =
-document.getElementById("clist");
-
-if(!list)
-return;
-
-list.innerHTML = "";
-
-const contacts =
-getContacts();
-
-Object.keys(contacts)
-.forEach(name => {
-
-const div =
-document.createElement("div");
-
-div.className = "contact";
-
-const span =
-document.createElement("span");
-
-span.className = "small";
-
-span.textContent =
-name + " — " + contacts[name];
-
-const btn =
-document.createElement("button");
-
-btn.textContent = "🗑";
-
-btn.onclick = () => {
-
-const c = getContacts();
-
-delete c[name];
-
-saveContacts(c);
-
-renderContacts();
-
-};
-
-div.appendChild(span);
-div.appendChild(btn);
-
-list.appendChild(div);
-
-});
-
-}
-
-
-function addContact(){
-
-const name =
-document.getElementById("cname")
-.value
-.trim()
-.toLowerCase();
-
-let number =
-document.getElementById("cnum")
-.value
-.replace(/\D/g,"");
-
-if(number.length === 10){
-
-number = "91" + number;
-
-}
-
-if(
-!name ||
-number.length < 11
-){
-
-setNotice(
-"⚠️ सही नाम और मोबाइल नंबर डालें।"
-);
-
-return;
-
-}
-
-const contacts =
-getContacts();
-
-contacts[name] = number;
-
-saveContacts(contacts);
-
-document.getElementById("cname")
-.value = "";
-
-document.getElementById("cnum")
-.value = "";
-
-renderContacts();
-
-setNotice(
-"✅ WhatsApp contact सेव हो गया।"
-);
-
-}
-
-
-/* =================================================
-   CALCULATOR
-================================================= */
+/* =========================
+CALCULATOR
+========================= */
 
 function calculator(q){
 
 let s =
 q.toLowerCase();
 
-s =
-s.replace(/×/g,"*")
+s = s
+.replace(/×/g,"*")
 .replace(/÷/g,"/");
 
-s =
-s.replace(
+s = s.replace(
 /plus|प्लस|जोड़ो|जोड़|जमा/g,
 "+"
 );
 
-s =
-s.replace(
+s = s.replace(
 /minus|माइनस|घटाओ|घटा/g,
 "-"
 );
 
-s =
-s.replace(
+s = s.replace(
 /times|multiply|गुणा|गुना|into/g,
 "*"
 );
 
-s =
-s.replace(
+s = s.replace(
 /divide|divided by|डिवाइड|भाग|बटा/g,
 "/"
 );
 
-s =
-s.replace(
+s = s.replace(
 /calculate|calculator|calc|solve|what is|kitna|kitne|kya|batao|बताओ|बताइए|कितना|कितने|क्या|है|होगा|उत्तर/g,
-" "
+""
 );
 
-s =
-s.replace(/\s+/g,"");
+s = s.replace(/\s+/g,"");
 
-if(
-!/^[0-9+\-*/().]+$/.test(s)
-)
+if(!/^[0-9+\-*/().]+$/.test(s))
 return null;
 
-if(
-!/[+\-*/]/.test(s)
-)
+if(!/[+\-*/]/.test(s))
 return null;
 
 try{
 
 const result =
 Function(
-'"use strict";return ('+
-s+
+'"use strict";return (' +
+s +
 ')'
 )();
 
-if(!isFinite(result)){
-
+if(!isFinite(result))
 return "उत्तर नहीं निकाला जा सकता।";
-
-}
 
 return "उत्तर: " + result;
 
@@ -1460,25 +1251,57 @@ return null;
 
 }
 
-/* =================================================
-   WEATHER
-================================================= */
+
+/* =========================
+DATE / TIME
+========================= */
+
+function getDateAnswer(){
+
+return "📅 आज की तारीख: " +
+new Date().toLocaleDateString(
+"hi-IN",
+{
+day:"numeric",
+month:"long",
+year:"numeric"
+}
+);
+
+}
+
+
+function getTimeAnswer(){
+
+return "🕐 अभी समय: " +
+new Date().toLocaleTimeString(
+"hi-IN",
+{
+hour:"2-digit",
+minute:"2-digit"
+}
+);
+
+}
+
+
+/* =========================
+WEATHER
+========================= */
 
 function cleanWeatherPlace(q){
 
 let s =
 q.toLowerCase();
 
-s =
-s.replace(
-/weather|मौसम|वेदर|बताओ|बताइए|बताइये|बता|बताइ|please|प्लीज/g,
-" "
+s = s.replace(
+/weather|मौसम|वेदर|बताओ|बताइए|बताइये|बता|please|प्लीज/g,
+""
 );
 
-s =
-s.replace(
+s = s.replace(
 /\b(का|के|की|में|मे|पर|आज|अभी|यहाँ|यहां)\b/g,
-" "
+""
 );
 
 return s
@@ -1502,133 +1325,90 @@ return "🌦️ किस जगह का मौसम चाहिए? उद�
 setNotice(
 "🌍 " +
 place +
-" की location खोज रहा हूँ..."
+" का मौसम खोज रहा हूँ..."
 );
 
 try{
 
-let url =
-"https://geocoding-api.open-meteo.com/v1/search?name=" +
+const geoURL =
+"https://geocoding-api.open-meteo.com/v1/search" +
+"?name=" +
 encodeURIComponent(place) +
-"&count=5&language=en&format=json";
+"&count=1&language=en&format=json";
 
-let response =
-await fetch(url);
+const geoResponse =
+await fetch(geoURL);
 
-let data =
-await response.json();
+const geo =
+await geoResponse.json();
 
-if(
-!data.results ||
-!data.results.length
-){
+if(!geo.results || !geo.results.length){
 
-const words =
-place.split(" ");
-
-if(words.length > 2){
-
-const shorter =
-words.slice(0,2).join(" ");
-
-url =
-"https://geocoding-api.open-meteo.com/v1/search?name=" +
-encodeURIComponent(shorter) +
-"&count=5&language=en&format=json";
-
-response =
-await fetch(url);
-
-data =
-await response.json();
-
-}
-
-}
-
-if(
-!data.results ||
-!data.results.length
-){
-
-return (
-'❌ "' +
+return "❌ " +
 place +
-'" की location नहीं मिली।\n\n' +
-"शहर या गाँव का नाम थोड़ा साफ़ लिखें।"
-);
+" की location नहीं मिली।";
 
 }
 
-const location =
-data.results[0];
+const loc = geo.results[0];
 
-const weatherUrl =
+const weatherURL =
 "https://api.open-meteo.com/v1/forecast" +
-"?latitude=" + location.latitude +
-"&longitude=" + location.longitude +
-"&current=temperature_2m" +
-",relative_humidity_2m" +
-",apparent_temperature" +
-",weather_code" +
-",wind_speed_10m" +
+"?latitude=" +
+loc.latitude +
+"&longitude=" +
+loc.longitude +
+"&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m" +
 "&timezone=auto";
 
-const weatherResponse =
-await fetch(weatherUrl);
+const wr =
+await fetch(weatherURL);
 
-const weatherData =
-await weatherResponse.json();
+const wd =
+await wr.json();
 
 const c =
-weatherData.current;
+wd.current;
+
+let condition = "बादल";
 
 const code =
 Number(c.weather_code);
 
-let condition = "बादल";
-
-if(code === 0){
-
+if(code === 0)
 condition = "साफ आसमान";
 
-}else if(code <= 3){
-
+else if(code <= 3)
 condition = "आंशिक बादल";
 
-}else if(code <= 48){
-
+else if(code <= 48)
 condition = "कोहरा";
 
-}else if(code <= 67){
-
+else if(code <= 67)
 condition = "बारिश";
 
-}else if(code <= 77){
-
+else if(code <= 77)
 condition = "बर्फबारी";
 
-}else if(code <= 82){
-
+else if(code <= 82)
 condition = "बारिश की बौछार";
 
-}else if(code >= 95){
-
+else if(code >= 95)
 condition = "गरज के साथ बारिश";
 
-}
 
 return (
 "🌦️ " +
-location.name +
-(location.country
-? ", " + location.country
-: "") +
+loc.name +
 " का अभी मौसम:\n\n" +
 
 "🌡️ तापमान: " +
 c.temperature_2m +
 "°C\n" +
+
+"🌤️ स्थिति: " +
+condition +
+"\n" +
 
 "💧 नमी: " +
 c.relative_humidity_2m +
@@ -1636,670 +1416,524 @@ c.relative_humidity_2m +
 
 "🌬️ हवा: " +
 c.wind_speed_10m +
-" km/h\n" +
-
-"☁️ स्थिति: " +
-condition
+" km/h"
 );
 
-}catch(error){
+}catch(e){
 
-return (
-"⚠️ Weather service से जानकारी नहीं मिल पाई।\n" +
-"Internet connection check करें।"
-);
+return "❌ Weather नहीं मिल पाया। Internet connection जाँचें।";
 
 }
 
 }
 
 
-/* =================================================
-   GEMINI
-================================================= */
+/* =========================
+OPEN APP COMMAND
+========================= */
 
-function isRetryable(status){
+function detectApp(q){
 
-return (
-status === 429 ||
-status === 500 ||
-status === 502 ||
-status === 503 ||
-status === 504
-);
+const s =
+q.toLowerCase();
 
-}
-
-
-function sleep(ms){
-
-return new Promise(
-resolve => setTimeout(resolve,ms)
-);
-
-}
-
-
-async function callGemini(
-model,
-key,
-question
-){
-
-const response =
-await fetch(
-GEMINI_URL +
-"/" +
-model +
-":generateContent?key=" +
-encodeURIComponent(key),
-
-{
-
-method:"POST",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-
-systemInstruction:{
-
-parts:[
-
-{
-
-text:
-"You are JARVIS, Tony Stark's calm, polite and slightly witty AI butler, running on the user's phone. Address the user as sir when it sounds natural. Answer in the same language as the user. Keep answers short, clear and helpful. Do not claim that you performed phone actions unless the webpage actually performed them."
-
-}
-
-]
-
-},
-
-contents:[
-
-{
-
-role:"user",
-
-parts:[
-
-{
-text:question
-}
-
-]
-
-}
-
-]
-
-})
-
-}
-
-);
-
-
-if(!response.ok){
-
-let message = "";
-
-try{
-
-const error =
-await response.json();
-
-message =
-error.error?.message ||
-"";
-
-}catch(e){}
-
-const err =
-new Error(
-"HTTP " +
-response.status +
-(
-message
-?
-" - " + message
-:
-""
+if(
+s.includes("youtube") ||
+s.includes("यूट्यूब")
 )
-);
-
-err.status =
-response.status;
-
-throw err;
-
-}
-
-const data =
-await response.json();
-
-const text =
-data
-.candidates?.[0]
-?.content
-?.parts
-?.map(p => p.text || "")
-.join("");
-
-if(!text){
-
-const err =
-new Error("EMPTY_REPLY");
-
-err.status = 200;
-
-throw err;
-
-}
-
-return text.trim();
-
-}
-
-
-/* =================================================
-   GEMINI FALLBACK
-================================================= */
-
-async function askGemini(
-question,
-key
-){
-
-let lastError = null;
-
-for(
-let i=0;
-i<GEMINI_MODELS.length;
-i++
-){
-
-const model =
-GEMINI_MODELS[i];
-
-for(
-let attempt=1;
-attempt<=3;
-attempt++
-){
-
-try{
-
-setNotice(
-"🤖 " +
-model +
-" से जवाब लिया जा रहा है..."
-);
-
-const answer =
-await callGemini(
-model,
-key,
-question
-);
-
-HIST.push(
-
-{
-role:"user",
-parts:[
-{
-text:question
-}
-]
-},
-
-{
-role:"model",
-parts:[
-{
-text:answer
-}
-]
-}
-
-);
-
-if(HIST.length > 12){
-
-HIST =
-HIST.slice(-12);
-
-}
-
-saveChat();
-
-return answer;
-
-}catch(error){
-
-lastError = error;
+return "youtube";
 
 if(
-error.status === 401 ||
-error.status === 403
-){
-
-throw new Error(
-"API_KEY_ERROR"
-);
-
-}
-
-if(
-!isRetryable(error.status)
-){
-
-break;
-
-}
-
-if(attempt < 3){
-
-setNotice(
-"⏳ Gemini busy है। Retry " +
-(attempt+1) +
-"/3..."
-);
-
-await sleep(
-1500 * attempt
-);
-
-}
-
-}
-
-}
-
-}
-
-throw new Error(
-"GEMINI_FAILED: " +
-(
-lastError
-?
-lastError.message
-:
-"Unknown error"
+s.includes("whatsapp") ||
+s.includes("व्हाट्सएप")
 )
-);
-
-}
-
-
-/* =================================================
-   AI
-================================================= */
-
-async function askAI(q){
-
-const key =
-localStorage.getItem(KEY);
-
-if(!key){
-
-return (
-"🤖 AI के लिए Settings ⚙ में Gemini API key डालें।"
-);
-
-}
-
-return askGemini(q,key);
-
-}
-
-
-/* =================================================
-   BASIC COMMANDS
-================================================= */
-
-function openApp(lower){
- const apps=[
-  {n:"WhatsApp",k:["whatsapp","व्हाट्सएप","व्हाट्सऐप","वाट्सएप"],u:"intent://send/#Intent;scheme=whatsapp;package=com.whatsapp;S.browser_fallback_url="+encodeURIComponent("https://wa.me/")+";end"},
-  {n:"YouTube",k:["youtube","यूट्यूब","यू ट्यूब"],u:"https://www.youtube.com/"},
-  {n:"Google Maps",k:["maps","मैप"],u:"https://www.google.com/maps"},
-  {n:"ChatGPT",k:["chatgpt","चैटजीपीटी"],u:"https://chatgpt.com/"},
-  {n:"Claude",k:["claude","क्लाउड"],u:"https://claude.ai/"}
- ];
- if(!/(open|ओपन|खोल|चालू|start|launch)/.test(lower))return null;
- const a=apps.find(x=>x.k.some(w=>lower.includes(w)));
- if(!a)return null;
- setTimeout(()=>{
-  const d=document.getElementById("chat").lastElementChild;
-  if(d){
-   const b=document.createElement("button");
-   b.className="replay";
-   b.textContent="▶ "+a.n+" खोलें";
-   b.onclick=()=>{location.href=a.u};
-   d.appendChild(b);
-  }
-  try{location.href=a.u}catch(e){}
- },600);
- return a.n+" खोल रहा हूँ…";
-}
-
-
-async function basic(q){
-
-const lower =
-q.toLowerCase().trim();
-
-
-/* Greeting */
+return "whatsapp";
 
 if(
-/^(hi|hello|hey|namaste|नमस्ते)(\s|!|,|\.|$)/
-.test(lower)
-){
-
-return (
-"At your service, sir. मैं JARVIS हूँ। बताइए, मैं क्या करूँ?"
-);
-
-}
-
-
-/* Time */
+s.includes("maps") ||
+s.includes("map") ||
+s.includes("मैप")
+)
+return "maps";
 
 if(
-/(^|\s)(time|समय|टाइम)(\s|$)/
-.test(lower)
-){
-
-return (
-"अभी समय " +
-new Date().toLocaleTimeString(
-"hi-IN",
-{
-hour:"2-digit",
-minute:"2-digit"
-}
-) +
-" है।"
-);
-
-}
-
-
-/* Date */
+s.includes("chatgpt")
+)
+return "chatgpt";
 
 if(
-/(^|\s)(date|तारीख|today|आज)(\s|$)/
-.test(lower)
-){
-
-return (
-"आज " +
-new Date().toLocaleDateString(
-"hi-IN",
-{
-weekday:"long",
-day:"numeric",
-month:"long",
-year:"numeric"
-}
-) +
-" है।"
-);
-
-}
-
-
-/* Open app */
-
-const app=openApp(lower);
-
-if(app)return app;
-
-
-/* Weather */
+s.includes("gmail") ||
+s.includes("जीमेल")
+)
+return "gmail";
 
 if(
-/weather|मौसम|वेदर/
-.test(lower)
-){
-
-return await weather(q);
-
-}
-
-
-/* Calculator */
-
-const calc =
-calculator(q);
-
-if(calc)
-return calc;
-
-
-/* Identity */
+s.includes("instagram") ||
+s.includes("इंस्टाग्राम")
+)
+return "instagram";
 
 if(
-lower.includes("who are you") ||
-lower.includes("तुम कौन हो") ||
-lower.includes("आप कौन हो")
-){
+s.includes("facebook") ||
+s.includes("फेसबुक")
+)
+return "facebook";
 
-return (
-"मैं JARVIS हूँ, आपका browser-based AI assistant।"
-);
-
-}
+if(
+s.includes("chrome") ||
+s.includes("क्रोम")
+)
+return "chrome";
 
 return null;
 
 }
 
 
-/* =================================================
-   SEND
-================================================= */
+/* =========================
+SEND
+========================= */
 
 async function send(){
 
 const input =
 document.getElementById("input");
 
-const question =
+const q =
 input.value.trim();
 
-if(!question)
+if(!q)
 return;
-
-addMsg(
-question,
-"user"
-);
 
 input.value = "";
 
-document.getElementById("status")
-.textContent = "THINKING";
+hidePlus();
 
-try{
+addMsg(q,"user");
 
-let answer =
-await basic(question);
+setNotice("🤔 JARVIS सोच रहा है...");
 
-if(answer === null){
 
-answer =
-await askAI(question);
+/* APP */
 
-}
-
-lastReply = answer;
-
-addMsg(
-answer,
-"bot"
-);
-
-speakSir(answer);
-
-}catch(error){
-
-let message = "";
+const app =
+detectApp(q);
 
 if(
-error.message === "API_KEY_ERROR"
-){
-
-message =
-"❌ Gemini API key गलत है या permission नहीं है.\n\n" +
-"Settings ⚙ में API key दोबारा डालें।";
-
-}else if(
-error.message &&
-error.message.includes("404")
-){
-
-message =
-"❌ Gemini model उपलब्ध नहीं है। बाद में फिर कोशिश करें।";
-
-}else if(
-error.message &&
-error.message.includes("429")
-){
-
-message =
-"⚠️ Gemini request limit अभी पूरी हो गई है। थोड़ी देर बाद फिर कोशिश करें।";
-
-}else{
-
-message =
-"⚠️ AI से जवाब नहीं मिला.\n\n" +
+app &&
 (
-error.message ||
-"Unknown error"
-);
-
-}
-
-lastReply = message;
-
-addMsg(
-message,
-"bot"
-);
-
-}
-
-document.getElementById("status")
-.textContent = "STANDING BY";
-
-}
-
-
-/* =================================================
-   MICROPHONE
-================================================= */
-
-function startMic(){
-
-if(
-!(
-"webkitSpeechRecognition" in window ||
-"SpeechRecognition" in window
+q.toLowerCase().includes("खोल") ||
+q.toLowerCase().includes("open") ||
+q.toLowerCase().includes("चलाओ") ||
+q.toLowerCase().includes("चलाना")
 )
 ){
 
-addMsg(
-"इस Chrome में Speech Recognition उपलब्ध नहीं है। Type करके Send दबाएँ।",
-"bot"
+const reply =
+"🚀 " +
+app.toUpperCase() +
+" खोल रहा हूँ...";
+
+addMsg(reply,"bot");
+
+lastReply = reply;
+
+speak(reply);
+
+setTimeout(function(){
+
+openApp(app);
+
+},300);
+
+return;
+
+}
+
+
+/* DATE */
+
+if(
+/तारीख|date|आज की date/i.test(q)
+){
+
+const reply =
+getDateAnswer();
+
+addMsg(reply,"bot");
+
+lastReply = reply;
+
+speak(reply);
+
+return;
+
+}
+
+
+/* TIME */
+
+if(
+/समय|time|टाइम|अभी कितना बजा/i.test(q)
+){
+
+const reply =
+getTimeAnswer();
+
+addMsg(reply,"bot");
+
+lastReply = reply;
+
+speak(reply);
+
+return;
+
+}
+
+
+/* CALCULATOR */
+
+const calc =
+calculator(q);
+
+if(calc){
+
+addMsg(calc,"bot");
+
+lastReply = calc;
+
+speak(calc);
+
+setNotice("🧮 Calculation complete.");
+
+return;
+
+}
+
+
+/* WEATHER */
+
+if(
+/weather|मौसम|वेदर/i.test(q)
+){
+
+const reply =
+await weather(q);
+
+addMsg(reply,"bot");
+
+lastReply = reply;
+
+speak(reply);
+
+setNotice("🌦️ Weather complete.");
+
+return;
+
+}
+
+
+/* AI */
+
+const key =
+localStorage.getItem(KEY);
+
+if(!key){
+
+const reply =
+"🤖 Gemini API key नहीं मिली। Settings ⚙ में अपनी Gemini API key डालें।";
+
+addMsg(reply,"bot");
+
+lastReply = reply;
+
+speak(reply);
+
+setNotice(
+"⚠️ पहले Settings ⚙ में Gemini API key डालें।"
 );
 
 return;
 
 }
 
-const SpeechRecognition =
-window.SpeechRecognition ||
-window.webkitSpeechRecognition;
-
-recognition =
-new SpeechRecognition();
-
-recognition.lang = "hi-IN";
-recognition.interimResults = false;
-recognition.continuous = false;
-
-recognition.onstart = () => {
-
-document.getElementById("status")
-.textContent = "LISTENING...";
-
-setNotice(
-"🎙️ बोलिए... JARVIS सुन रहा है।"
-);
-
-};
-
-recognition.onresult = e => {
-
-const text =
-e.results[0][0].transcript;
-
-document.getElementById("input")
-.value = text;
-
-send();
-
-};
-
-recognition.onerror = e => {
-setNotice(
-"🎙️ Mic error: " +
-e.error +
-"<br>Chrome में Microphone → Allow करें।"
-);
-
-document.getElementById("status")
-.textContent = "STANDING BY";
-
-};
-
-recognition.onend = () => {
-
-document.getElementById("status")
-.textContent = "STANDING BY";
-
-};
 
 try{
 
-recognition.start();
+const answer =
+await askAI(q,key);
 
+addMsg(answer,"bot");
+
+lastReply = answer;
+
+speak(answer);
+
+setNotice("🟢 Ready");
+
+}catch(e){
+
+const reply =
+"❌ AI से reply नहीं मिला।\n\n" +
+e.message;
+
+addMsg(reply,"bot");
+
+lastReply = reply;
+
+speak(reply);
+
+setNotice("🔴 AI Error");
+
+}
+
+}
+
+
+/* =========================
+AI
+========================= */
+
+async function askAI(question,key){
+
+HIST.push({
+role:"user",
+parts:[
+{
+text:question
+}
+]
+});
+
+HIST =
+HIST.slice(-12);
+
+
+let lastError = "";
+
+for(
+const model of GEMINI_MODELS
+){
+
+try{
+
+const url =
+GEMINI_URL +
+"/" +
+model +
+":generateContent?key=" +
+encodeURIComponent(key);
+
+
+const body = {
+
+systemInstruction:{
+parts:[
+{
+text:
+"You are JARVIS, a helpful mobile AI assistant. Answer clearly and briefly. Hindi questions should normally be answered in Hindi."
+}
+]
+},
+
+contents:HIST
+
+};
+
+
+const response =
+await fetch(
+url,
+{
+method:"POST",
+
+headers:{
+"Content-Type":
+"application/json"
+},
+
+body:
+JSON.stringify(body)
+
+}
+);
+
+
+const data =
+await response.json();
+
+
+if(!response.ok){
+
+lastError =
+data?.error?.message ||
+"Gemini API error";
+
+continue;
+
+}
+
+
+let answer =
+data?.candidates?.[0]?.content?.parts
+?.map(function(p){
+return p.text || "";
+})
+.join("")
+.trim();
+
+
+if(!answer){
+
+lastError =
+"EMPTY_REPLY";
+
+continue;
+
+}
+
+
+HIST.push({
+
+role:"model",
+
+parts:[
+{
+text:answer
+}
+]
+
+});
+
+HIST =
+HIST.slice(-12);
+
+saveChat();
+
+return answer;
+
+}catch(e){
+
+lastError =
+e.message;
+
+}
+
+}
+
+throw new Error(lastError || "AI reply नहीं मिला।");
+
+}
+
+
+/* =========================
+MIC
+========================= */
+
+function startMic(){
+
+const SR =
+window.SpeechRecognition ||
+window.webkitSpeechRecognition;
+
+if(!SR){
+
+setNotice(
+"❌ आपके browser में Speech Recognition उपलब्ध नहीं है। Chrome इस्तेमाल करें।"
+);
+
+return;
+
+}
+
+
+if(recognition){
+
+try{
+recognition.stop();
 }catch(e){}
 
 }
 
 
-/* =================================================
-   WAKE WORD
-================================================= */
+recognition =
+new SR();
 
-function normalizeWakeText(text){
+recognition.lang =
+"hi-IN";
 
-return text
-.toLowerCase()
-.replace(/[.,!?।]/g," ")
-.replace(/\s+/g," ")
-.trim();
+recognition.interimResults =
+false;
+
+recognition.continuous =
+false;
+
+
+setNotice(
+"🎙️ सुन रहा हूँ... बोलिए"
+);
+
+
+recognition.onresult =
+function(event){
+
+const text =
+event.results[0][0].transcript;
+
+document.getElementById("input")
+.value = text;
+
+setNotice(
+"✅ आपने कहा: " +
+text
+);
+
+send();
+
+};
+
+
+recognition.onerror =
+function(event){
+
+setNotice(
+"❌ Mic error: " +
+event.error
+);
+
+};
+
+
+recognition.onend =
+function(){
+
+if(!wakeActive){
+
+setNotice("🟢 Ready");
 
 }
 
+};
+
+
+try{
+
+recognition.start();
+
+}catch(e){
+
+setNotice(
+"❌ Mic शुरू नहीं हो पाया।"
+);
+
+}
+
+}
+
+
+/* =========================
+WAKE WORD
+========================= */
 
 function toggleWakeWord(){
 
@@ -2318,215 +1952,137 @@ startWakeWord();
 
 function startWakeWord(){
 
-if(
-!(
-"webkitSpeechRecognition" in window ||
-"SpeechRecognition" in window
-)
-){
+const SR =
+window.SpeechRecognition ||
+window.webkitSpeechRecognition;
 
-addMsg(
-"इस Chrome में Wake Word Speech Recognition उपलब्ध नहीं है।",
-"bot"
+if(!SR){
+
+setNotice(
+"❌ Wake Word के लिए Chrome Speech Recognition चाहिए।"
 );
 
 return;
 
 }
 
-if(wakeActive)
+
+wakeActive = true;
+
+
+const btn =
+document.getElementById("wakeBtn");
+
+btn.textContent =
+"🔵 Wake ON";
+
+btn.classList.add("wake-on");
+
+setNotice(
+"🟢 Wake Word चालू है। “Hey JARVIS” बोलें।"
+);
+
+
+runWakeRecognition();
+
+}
+
+
+function runWakeRecognition(){
+
+if(!wakeActive)
 return;
 
-const R =
+
+const SR =
 window.SpeechRecognition ||
 window.webkitSpeechRecognition;
 
 wakeRecognition =
-new R();
+new SR();
 
-wakeRecognition.lang = "hi-IN";
-wakeRecognition.continuous = true;
-wakeRecognition.interimResults = false;
+wakeRecognition.lang =
+"hi-IN";
 
-wakeActive = true;
+wakeRecognition.interimResults =
+false;
 
-const button =
-document.getElementById("wakeBtn");
-
-button.textContent = "🔴 Wake ON";
-
-button.classList.add("wake-on");
-
-setNotice(
-"🟢 Wake Word चालू है। “Hey JARVIS” या “हे जार्विस” बोलिए।"
-);
-
-document.getElementById("status")
-.textContent =
-"WAITING FOR WAKE WORD";
+wakeRecognition.continuous =
+false;
 
 
-wakeRecognition.onresult = e => {
-
-for(
-let i=e.resultIndex;
-i<e.results.length;
-i++
-){
-
-if(!e.results[i].isFinal)
-continue;
+wakeRecognition.onresult =
+function(event){
 
 const text =
-e.results[i][0].transcript;
+event.results[0][0].transcript
+.toLowerCase();
 
-const q =
-normalizeWakeText(text);
 
-const words = [
-"hey jarvis",
-"हे जार्विस",
-"हे जारविस",
-"jarvis",
-"जार्विस"
-];
-
-let found = false;
-
-for(const word of words){
-
-if(q.includes(word)){
-
-found = true;
-break;
-
-}
-
-}
-
-if(!found)
-continue;
-
-let command = q;
-
-words.forEach(word => {
-
-command =
-command
-.split(word)
-.join(" ");
-
-});
-
-command =
-command.trim();
-
-if(command){
-
-document.getElementById("input")
-.value = command;
-
-setTimeout(() => {
-
-if(wakeActive)
-send();
-
-},300);
-
-}else{
-
-speak("जी सर, बोलिए");
+if(
+text.includes("jarvis") ||
+text.includes("जार्विस") ||
+text.includes("hey jarvis") ||
+text.includes("हे जार्विस")
+){
 
 setNotice(
-"🎙️ जी सर, बोलिए... JARVIS सुन रहा है।"
+"🟢 Wake Word मिला। बोलिए..."
 );
 
-}
+speak("जी सर।");
+
+setTimeout(
+startMic,
+700
+);
 
 }
 
 };
 
 
-wakeRecognition.onerror = e => {
-
-if(!wakeActive)
-return;
-
-if(
-e.error === "not-allowed"
-){
-
-setNotice(
-"⚠️ Microphone permission Allow करें।"
-);
-
-stopWakeWord();
-
-return;
-
-}
-
-if(
-e.error !== "aborted"
-){
-
-restartWakeWord();
-
-}
-
-};
-
-
-wakeRecognition.onend = () => {
+wakeRecognition.onend =
+function(){
 
 if(wakeActive){
 
-restartWakeWord();
+clearTimeout(wakeRestartTimer);
+
+wakeRestartTimer =
+setTimeout(
+runWakeRecognition,
+500
+);
 
 }
 
 };
 
-try{
 
-wakeRecognition.start();
+wakeRecognition.onerror =
+function(){
 
-}catch(e){
+if(wakeActive){
 
-restartWakeWord();
-
-}
-
-}
-
-
-function restartWakeWord(){
-
-if(!wakeActive)
-return;
-
-clearTimeout(
-wakeRestartTimer
-);
+clearTimeout(wakeRestartTimer);
 
 wakeRestartTimer =
-setTimeout(() => {
+setTimeout(
+runWakeRecognition,
+1000
+);
 
-if(!wakeActive)
-return;
+}
+
+};
+
 
 try{
 
 wakeRecognition.start();
 
-}catch(e){
-
-restartWakeWord();
-
-}
-
-},1000);
+}catch(e){}
 
 }
 
@@ -2535,52 +2091,40 @@ function stopWakeWord(){
 
 wakeActive = false;
 
-clearTimeout(
-wakeRestartTimer
-);
+clearTimeout(wakeRestartTimer);
 
-if(wakeRecognition){
 
 try{
 
-wakeRecognition.onend = null;
-wakeRecognition.onerror = null;
-wakeRecognition.stop();
+if(wakeRecognition){
 
-}catch(e){}
+wakeRecognition.stop();
 
 }
 
-wakeRecognition = null;
+}catch(e){}
 
 
-/* FIXED:
-   const button =
-   document.getElementById("wakeBtn");
-*/
-
-const button =
+const btn =
 document.getElementById("wakeBtn");
 
-button.textContent = "🟢 Wake";
+btn.textContent =
+"🟢 Wake";
 
-button.classList.remove("wake-on");
-
-document.getElementById("status")
-.textContent = "STANDING BY";
+btn.classList.remove("wake-on");
 
 setNotice(
-"🎙️ Wake Word बंद है।"
+"🔴 Wake Word बंद है।"
 );
 
 }
 
 
-/* =================================================
-   CAMERA / PHOTO
-================================================= */
+/* =========================
+PHOTO ANALYSIS
+========================= */
 
-function onPhoto(input){
+async function onPhoto(input){
 
 const file =
 input.files &&
@@ -2591,43 +2135,11 @@ input.value = "";
 if(!file)
 return;
 
-const question =
-document.getElementById("input")
-.value.trim()
-||
-"इस फोटो में क्या है?";
 
-const photoMsg =
-addMsg(
-"📷 " + question,
-"user"
-);
-
-try{
-
-const pic =
-document.createElement("img");
-
-pic.src =
-URL.createObjectURL(file);
-
-pic.style.cssText =
-"display:block;max-width:100%;max-height:220px;border-radius:12px;margin-top:8px;";
-
-photoMsg.insertBefore(
-pic,
-photoMsg.querySelector("button")
-);
-
-}catch(e){}
-
-const key =
-localStorage.getItem(KEY);
-
-if(!key){
+if(!file.type.startsWith("image/")){
 
 addMsg(
-"📷 फोटो analyze करने के लिए Settings ⚙ में Gemini API key डालें।",
+"❌ कृपया image file चुनें।",
 "bot"
 );
 
@@ -2635,147 +2147,482 @@ return;
 
 }
 
-const reader =
-new FileReader();
 
-reader.onload =
-async function(){
+const question =
+document.getElementById("input")
+.value.trim() ||
+"इस फोटो में क्या है?";
+
+
+const photoMsg =
+addMsg(
+"📷 " +
+question,
+"user"
+);
+
+
+const img =
+document.createElement("img");
+
+img.className =
+"photo";
+
+img.src =
+URL.createObjectURL(file);
+
+photoMsg.appendChild(img);
+
+
+const key =
+localStorage.getItem(KEY);
+
+if(!key){
+
+addMsg(
+"❌ Photo analysis के लिए Settings ⚙ में Gemini API key डालें।",
+"bot"
+);
+
+return;
+
+}
+
+
+setNotice(
+"📷 Photo analyze हो रही है..."
+);
+
 
 try{
 
 const base64 =
-reader.result
-.split(",")[1];
+await fileToBase64(file);
 
-const response =
-await fetch(
+const pureBase64 =
+base64.split(",")[1];
 
+
+const model =
+"gemini-2.5-flash";
+
+
+const url =
 GEMINI_URL +
-"/gemini-2.5-flash:generateContent?key=" +
-encodeURIComponent(key),
+"/" +
+model +
+":generateContent?key=" +
+encodeURIComponent(key);
 
-{
 
-method:"POST",
-
-/* FIXED:
-   पहले यहाँ n"Content-Type" था
-*/
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
+const body = {
 
 contents:[
-
 {
-
 role:"user",
 
 parts:[
 
 {
-text:question
+text:
+question
 },
 
 {
-
-inlineData:{
-
-mimeType:
+inline_data:{
+mime_type:
 file.type,
 
 data:
-base64
-
+pureBase64
 }
-
-}
-
-]
-
 }
 
 ]
+}
+]
 
-})
+};
+
+
+const response =
+await fetch(
+url,
+{
+method:"POST",
+
+headers:{
+"Content-Type":
+"application/json"
+},
+
+body:
+JSON.stringify(body)
 
 }
-
 );
+
+
+const data =
+await response.json();
 
 
 if(!response.ok){
 
 throw new Error(
+data?.error?.message ||
 "PHOTO_HTTP_" +
 response.status
 );
 
 }
 
-const data =
-await response.json();
 
 const answer =
-data
-.candidates?.[0]
-?.content
-?.parts
-?.map(p => p.text || "")
-.join("");
+data?.candidates?.[0]?.content?.parts
+?.map(function(p){
+return p.text || "";
+})
+.join("")
+.trim();
+
 
 if(!answer){
 
 throw new Error(
-"EMPTY_REPLY"
+"EMPTY_PHOTO_REPLY"
 );
 
 }
 
-lastReply = answer;
 
 addMsg(
 answer,
 "bot"
 );
 
-speakSir(answer);
+lastReply =
+answer;
 
-}catch(error){
+speak(answer);
+
+setNotice(
+"🟢 Photo analysis complete."
+);
+
+
+}catch(e){
+
+const msg =
+"❌ फोटो analyze नहीं हो पाई।\n" +
+e.message;
 
 addMsg(
-
-"⚠️ फोटो analyze नहीं हो पाई। Gemini API key और internet connection check करें।",
-
+msg,
 "bot"
+);
 
+setNotice(
+"🔴 Photo analysis error."
 );
 
 }
 
+}
+
+
+/* =========================
+FILE TO BASE64
+========================= */
+
+function fileToBase64(file){
+
+return new Promise(function(resolve,reject){
+
+const reader =
+new FileReader();
+
+reader.onload =
+function(){
+
+resolve(reader.result);
+
 };
 
+reader.onerror =
+reject;
+
 reader.readAsDataURL(file);
+
+});
 
 }
 
 
-/* =================================================
-   START APP
-================================================= */
+/* =========================
+WHATSAPP CONTACTS
+========================= */
+
+function getContacts(){
+
+try{
+
+return JSON.parse(
+localStorage.getItem(CONTACT_KEY)
+|| "{}"
+);
+
+}catch(e){
+
+return {};
+
+}
+
+}
+
+
+function saveContacts(c){
+
+localStorage.setItem(
+CONTACT_KEY,
+JSON.stringify(c)
+);
+
+}
+
+
+function renderContacts(){
+
+const list =
+document.getElementById("clist");
+
+if(!list)
+return;
+
+list.innerHTML = "";
+
+const contacts =
+getContacts();
+
+
+Object.keys(contacts)
+.forEach(function(name){
+
+const div =
+document.createElement("div");
+
+div.className =
+"contact";
+
+
+const span =
+document.createElement("span");
+
+span.className =
+"small";
+
+span.textContent =
+name +
+" — " +
+contacts[name];
+
+
+const btn =
+document.createElement("button");
+
+btn.textContent =
+"🗑";
+
+
+btn.onclick =
+function(){
+
+const c =
+getContacts();
+
+delete c[name];
+
+saveContacts(c);
+
+renderContacts();
+
+};
+
+
+div.appendChild(span);
+div.appendChild(btn);
+
+list.appendChild(div);
+
+});
+
+}
+
+
+function addContact(){
+
+const name =
+document.getElementById("cname")
+.value
+.trim()
+.toLowerCase();
+
+
+let number =
+document.getElementById("cnum")
+.value
+.replace(/\D/g,"");
+
+
+if(number.length === 10){
+
+number =
+"91" +
+number;
+
+}
+
+
+if(
+!name ||
+number.length < 11
+){
+
+setNotice(
+"⚠️ सही नाम और मोबाइल नंबर डालें।"
+);
+
+return;
+
+}
+
+
+const contacts =
+getContacts();
+
+contacts[name] =
+number;
+
+saveContacts(contacts);
+
+
+document.getElementById("cname")
+.value = "";
+
+document.getElementById("cnum")
+.value = "";
+
+
+renderContacts();
+
+
+setNotice(
+"✅ WhatsApp contact सेव हो गया।"
+);
+
+}
+
+
+/* =========================
+APP ICON
+========================= */
+
+(function(){
+
+try{
+
+const svg =
+`
+<svg xmlns="http://www.w3.org/2000/svg"
+viewBox="0 0 512 512">
+
+<defs>
+
+<radialGradient id="g">
+
+<stop offset="0"
+stop-color="#8cf5ff"/>
+
+<stop offset=".55"
+stop-color="#14c7ec"/>
+
+<stop offset="1"
+stop-color="#06396b"/>
+
+</radialGradient>
+
+</defs>
+
+<rect
+width="512"
+height="512"
+rx="110"
+fill="#071827"/>
+
+<circle
+cx="256"
+cy="256"
+r="155"
+fill="url(#g)"/>
+
+<circle
+cx="256"
+cy="256"
+r="105"
+fill="none"
+stroke="#ffd54a"
+stroke-width="9"/>
+
+<circle
+cx="256"
+cy="260"
+r="24"
+fill="#fff"/>
+
+</svg>
+`;
+
+const icon =
+"data:image/svg+xml;base64," +
+btoa(
+unescape(
+encodeURIComponent(svg)
+)
+);
+
+const favicon =
+document.createElement("link");
+
+favicon.rel = "icon";
+
+favicon.type =
+"image/svg+xml";
+
+favicon.href = icon;
+
+document.head.appendChild(favicon);
+
+}catch(e){}
+
+})();
+
+
+/* =========================
+START
+========================= */
 
 if(!loadChat()){
 
 addMsg(
-"At your service, sir. मैं JARVIS हूँ। बताइए, मैं क्या करूँ?",
-"bot",
-true
+"नमस्ते! मैं JARVIS हूँ। मैं आपकी कैसे मदद कर सकता हूँ?",
+"bot"
 );
 
 }
+
+setNotice(
+"🟢 JARVIS Ready • ⚡ Quick Apps उपलब्ध हैं"
+);
 
 </script>
 
