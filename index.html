@@ -364,28 +364,18 @@ grid-template-columns:repeat(3,1fr);
 
 <header>
 
-<div class="logo">
-J.A.R.V.I.S
-</div>
+<div class="logo">J.A.R.V.I.S</div>
 
-<button
-id="wakeBtn"
+<button id="wakeBtn"
 onclick="toggleWakeWord()">
 🟢 Wake
 </button>
 
-<button onclick="replayLast()">
-↻
-</button>
+<button onclick="replayLast()">↻</button>
 
-<button onclick="stopSpeak()">
-■
-</button>
+<button onclick="stopSpeak()">■</button>
 
-<button
-onclick="openSettings()">
-⚙
-</button>
+<button onclick="openSettings()">⚙</button>
 
 </header>
 
@@ -408,7 +398,7 @@ STANDING BY
 
 </div>
 
-<!-- QUICK APPS MAIN SCREEN -->
+<!-- QUICK APPS -->
 
 <div class="quick-title">
 ⚡ Quick Apps
@@ -469,7 +459,6 @@ Chrome
 <div id="chat" class="chat"></div>
 
 </main>
-
 
 <!-- BOTTOM -->
 
@@ -538,34 +527,27 @@ onchange="onPhoto(this)">
 
 </div>
 
-
 <!-- SETTINGS -->
 
 <div id="modal" class="modal">
 
 <div class="panel">
 
-<button
-class="close"
+<button class="close"
 onclick="closeSettings()">
 ✕
 </button>
 
-<h2>
-J.A.R.V.I.S Settings
-</h2>
+<h2>J.A.R.V.I.S Settings</h2>
 
-<label>
-Gemini API Key
-</label>
+<label>Gemini API Key</label>
 
 <input
 id="key"
 type="password"
 placeholder="AIza...">
 
-<button
-class="ok"
+<button class="ok"
 onclick="saveKey()">
 Save Key
 </button>
@@ -577,9 +559,7 @@ Gemini API key browser के local storage में रखी जाती ह
 
 <hr>
 
-<h3>
-⚡ Quick Commands
-</h3>
+<h3>⚡ Quick Commands</h3>
 
 <div class="command-grid">
 
@@ -627,9 +607,7 @@ Gemini API key browser के local storage में रखी जाती ह
 
 <hr>
 
-<h3>
-WhatsApp Contacts
-</h3>
+<h3>WhatsApp Contacts</h3>
 
 <input
 id="cname"
@@ -640,8 +618,7 @@ id="cnum"
 type="tel"
 placeholder="9876543210">
 
-<button
-class="ok"
+<button class="ok"
 onclick="addContact()">
 Add Contact
 </button>
@@ -656,9 +633,7 @@ onclick="clearHistory();closeSettings();setNotice('🗑 Chat history मिट�
 </button>
 
 </div>
-
 </div>
-
 
 <script>
 
@@ -681,12 +656,17 @@ let wakeRestartTimer = null;
 
 
 /* =========================
-GEMINI
+GEMINI MODELS
 ========================= */
 
+/*
+FIX:
+पुराना gemini-2.5-flash-lite हटाया गया।
+*/
+
 const GEMINI_MODELS = [
-"gemini-2.5-flash",
-"gemini-2.5-flash-lite"
+"gemini-3.5-flash-lite",
+"gemini-3.5-flash"
 ];
 
 const GEMINI_URL =
@@ -704,9 +684,7 @@ closeSettings();
 document.getElementById("input").value = text;
 
 setTimeout(function(){
-
 send();
-
 },100);
 
 }
@@ -719,7 +697,6 @@ QUICK APP OPEN
 function openApp(app){
 
 let url = "";
-
 let intent = "";
 
 switch(app){
@@ -727,6 +704,7 @@ switch(app){
 case "youtube":
 
 url = "https://www.youtube.com/";
+
 intent =
 "intent://www.youtube.com/#Intent;scheme=https;package=com.google.android.youtube;end";
 
@@ -738,7 +716,8 @@ case "whatsapp":
 intent =
 "intent://send/#Intent;scheme=whatsapp;package=com.whatsapp;end";
 
-url = "https://web.whatsapp.com/";
+url =
+"https://web.whatsapp.com/";
 
 break;
 
@@ -809,24 +788,24 @@ break;
 
 
 setNotice(
-"🚀 " + app.toUpperCase() + " खोल रहा हूँ..."
+"🚀 " +
+app.toUpperCase() +
+" खोल रहा हूँ..."
 );
 
 
-/* Try Android app */
+/* Android app try */
 
 if(intent){
 
 try{
-
-location.href = intent;
-
+window.location.href = intent;
 }catch(e){}
 
 }
 
 
-/* Fallback */
+/* Web fallback */
 
 setTimeout(function(){
 
@@ -838,7 +817,7 @@ window.location.href = url;
 
 }catch(e){}
 
-},800);
+},1200);
 
 }
 
@@ -905,9 +884,7 @@ speechSynthesis.speak(u);
 function stopSpeak(){
 
 try{
-
 speechSynthesis.cancel();
-
 }catch(e){}
 
 }
@@ -916,9 +893,7 @@ speechSynthesis.cancel();
 function replayLast(){
 
 if(lastReply){
-
 speak(lastReply);
-
 }
 
 }
@@ -971,13 +946,17 @@ if(key){
 
 localStorage.setItem(KEY,key);
 
-setNotice("✅ Gemini API key saved.");
+setNotice(
+"✅ Gemini API key saved."
+);
 
 }else{
 
 localStorage.removeItem(KEY);
 
-setNotice("ℹ️ Gemini API key हटाई गई।");
+setNotice(
+"ℹ️ Gemini API key हटाई गई।"
+);
 
 }
 
@@ -1010,14 +989,15 @@ if(who === "bot"){
 const replay =
 document.createElement("button");
 
-replay.className = "replay";
+replay.className =
+"replay";
 
-replay.textContent = "🔊 Replay";
+replay.textContent =
+"🔊 Replay";
 
-replay.onclick = function(){
-
+replay.onclick =
+function(){
 speak(text);
-
 };
 
 d.appendChild(replay);
@@ -1030,11 +1010,14 @@ if(who === "user"){
 const edit =
 document.createElement("button");
 
-edit.className = "del";
+edit.className =
+"del";
 
-edit.textContent = "✏️";
+edit.textContent =
+"✏️";
 
-edit.onclick = function(){
+edit.onclick =
+function(){
 
 document.getElementById("input")
 .value = text;
@@ -1053,17 +1036,24 @@ d.appendChild(edit);
 const del =
 document.createElement("button");
 
-del.className = "del";
+del.className =
+"del";
 
-del.textContent = "🗑";
+del.textContent =
+"🗑";
 
-del.onclick = function(){
+del.onclick =
+function(){
 
 d.remove();
 
-LOG = LOG.filter(function(x){
+LOG =
+LOG.filter(function(x){
 
-return !(x.t === text && x.w === who);
+return !(
+x.t === text &&
+x.w === who
+);
 
 });
 
@@ -1129,7 +1119,8 @@ try{
 
 const data =
 JSON.parse(
-localStorage.getItem(CHAT_KEY) || "null"
+localStorage.getItem(CHAT_KEY)
+|| "null"
 );
 
 if(data){
@@ -1175,7 +1166,9 @@ LOG = [];
 HIST = [];
 lastReply = "";
 
+try{
 localStorage.removeItem(CHAT_KEY);
+}catch(e){}
 
 document.getElementById("chat")
 .innerHTML = "";
@@ -1192,36 +1185,42 @@ function calculator(q){
 let s =
 q.toLowerCase();
 
-s = s
-.replace(/×/g,"*")
+s =
+s.replace(/×/g,"*")
 .replace(/÷/g,"/");
 
-s = s.replace(
+s =
+s.replace(
 /plus|प्लस|जोड़ो|जोड़|जमा/g,
 "+"
 );
 
-s = s.replace(
+s =
+s.replace(
 /minus|माइनस|घटाओ|घटा/g,
 "-"
 );
 
-s = s.replace(
+s =
+s.replace(
 /times|multiply|गुणा|गुना|into/g,
 "*"
 );
 
-s = s.replace(
+s =
+s.replace(
 /divide|divided by|डिवाइड|भाग|बटा/g,
 "/"
 );
 
-s = s.replace(
+s =
+s.replace(
 /calculate|calculator|calc|solve|what is|kitna|kitne|kya|batao|बताओ|बताइए|कितना|कितने|क्या|है|होगा|उत्तर/g,
 ""
 );
 
-s = s.replace(/\s+/g,"");
+s =
+s.replace(/\s+/g,"");
 
 if(!/^[0-9+\-*/().]+$/.test(s))
 return null;
@@ -1253,7 +1252,7 @@ return null;
 
 
 /* =========================
-DATE / TIME
+DATE
 ========================= */
 
 function getDateAnswer(){
@@ -1270,6 +1269,10 @@ year:"numeric"
 
 }
 
+
+/* =========================
+TIME
+========================= */
 
 function getTimeAnswer(){
 
@@ -1294,12 +1297,14 @@ function cleanWeatherPlace(q){
 let s =
 q.toLowerCase();
 
-s = s.replace(
+s =
+s.replace(
 /weather|मौसम|वेदर|बताओ|बताइए|बताइये|बता|please|प्लीज/g,
 ""
 );
 
-s = s.replace(
+s =
+s.replace(
 /\b(का|के|की|में|मे|पर|आज|अभी|यहाँ|यहां)\b/g,
 ""
 );
@@ -1350,7 +1355,8 @@ place +
 
 }
 
-const loc = geo.results[0];
+const loc =
+geo.results[0];
 
 const weatherURL =
 "https://api.open-meteo.com/v1/forecast" +
@@ -1370,31 +1376,39 @@ await wr.json();
 const c =
 wd.current;
 
-let condition = "बादल";
+let condition =
+"बादल";
 
 const code =
 Number(c.weather_code);
 
 if(code === 0)
-condition = "साफ आसमान";
+condition =
+"साफ आसमान";
 
 else if(code <= 3)
-condition = "आंशिक बादल";
+condition =
+"आंशिक बादल";
 
 else if(code <= 48)
-condition = "कोहरा";
+condition =
+"कोहरा";
 
 else if(code <= 67)
-condition = "बारिश";
+condition =
+"बारिश";
 
 else if(code <= 77)
-condition = "बर्फबारी";
+condition =
+"बर्फबारी";
 
 else if(code <= 82)
-condition = "बारिश की बौछार";
+condition =
+"बारिश की बौछार";
 
 else if(code >= 95)
-condition = "गरज के साथ बारिश";
+condition =
+"गरज के साथ बारिश";
 
 
 return (
@@ -1429,7 +1443,7 @@ return "❌ Weather नहीं मिल पाया। Internet connection �
 
 
 /* =========================
-OPEN APP COMMAND
+APP DETECTION
 ========================= */
 
 function detectApp(q){
@@ -1491,206 +1505,6 @@ return null;
 
 
 /* =========================
-SEND
-========================= */
-
-async function send(){
-
-const input =
-document.getElementById("input");
-
-const q =
-input.value.trim();
-
-if(!q)
-return;
-
-input.value = "";
-
-hidePlus();
-
-addMsg(q,"user");
-
-setNotice("🤔 JARVIS सोच रहा है...");
-
-
-/* APP */
-
-const app =
-detectApp(q);
-
-if(
-app &&
-(
-q.toLowerCase().includes("खोल") ||
-q.toLowerCase().includes("open") ||
-q.toLowerCase().includes("चलाओ") ||
-q.toLowerCase().includes("चलाना")
-)
-){
-
-const reply =
-"🚀 " +
-app.toUpperCase() +
-" खोल रहा हूँ...";
-
-addMsg(reply,"bot");
-
-lastReply = reply;
-
-speak(reply);
-
-setTimeout(function(){
-
-openApp(app);
-
-},300);
-
-return;
-
-}
-
-
-/* DATE */
-
-if(
-/तारीख|date|आज की date/i.test(q)
-){
-
-const reply =
-getDateAnswer();
-
-addMsg(reply,"bot");
-
-lastReply = reply;
-
-speak(reply);
-
-return;
-
-}
-
-
-/* TIME */
-
-if(
-/समय|time|टाइम|अभी कितना बजा/i.test(q)
-){
-
-const reply =
-getTimeAnswer();
-
-addMsg(reply,"bot");
-
-lastReply = reply;
-
-speak(reply);
-
-return;
-
-}
-
-
-/* CALCULATOR */
-
-const calc =
-calculator(q);
-
-if(calc){
-
-addMsg(calc,"bot");
-
-lastReply = calc;
-
-speak(calc);
-
-setNotice("🧮 Calculation complete.");
-
-return;
-
-}
-
-
-/* WEATHER */
-
-if(
-/weather|मौसम|वेदर/i.test(q)
-){
-
-const reply =
-await weather(q);
-
-addMsg(reply,"bot");
-
-lastReply = reply;
-
-speak(reply);
-
-setNotice("🌦️ Weather complete.");
-
-return;
-
-}
-
-
-/* AI */
-
-const key =
-localStorage.getItem(KEY);
-
-if(!key){
-
-const reply =
-"🤖 Gemini API key नहीं मिली। Settings ⚙ में अपनी Gemini API key डालें।";
-
-addMsg(reply,"bot");
-
-lastReply = reply;
-
-speak(reply);
-
-setNotice(
-"⚠️ पहले Settings ⚙ में Gemini API key डालें।"
-);
-
-return;
-
-}
-
-
-try{
-
-const answer =
-await askAI(q,key);
-
-addMsg(answer,"bot");
-
-lastReply = answer;
-
-speak(answer);
-
-setNotice("🟢 Ready");
-
-}catch(e){
-
-const reply =
-"❌ AI से reply नहीं मिला।\n\n" +
-e.message;
-
-addMsg(reply,"bot");
-
-lastReply = reply;
-
-speak(reply);
-
-setNotice("🔴 AI Error");
-
-}
-
-}
-
-
-/* =========================
 AI
 ========================= */
 
@@ -1707,7 +1521,6 @@ text:question
 
 HIST =
 HIST.slice(-12);
-
 
 let lastError = "";
 
@@ -1821,7 +1634,233 @@ e.message;
 
 }
 
-throw new Error(lastError || "AI reply नहीं मिला।");
+throw new Error(
+lastError ||
+"AI reply नहीं मिला।"
+);
+
+}
+
+
+/* =========================
+SEND
+========================= */
+
+async function send(){
+
+const input =
+document.getElementById("input");
+
+const q =
+input.value.trim();
+
+if(!q)
+return;
+
+input.value = "";
+
+hidePlus();
+
+addMsg(q,"user");
+
+setNotice(
+"🤔 JARVIS सोच रहा है..."
+);
+
+
+/* APP */
+
+const app =
+detectApp(q);
+
+const lower =
+q.toLowerCase();
+
+if(
+app &&
+(
+lower.includes("खोल") ||
+lower.includes("open") ||
+lower.includes("चलाओ") ||
+lower.includes("चलाना") ||
+lower.includes("open chat") ||
+lower.includes("open whatsapp")
+)
+){
+
+const reply =
+"🚀 " +
+app.toUpperCase() +
+" खोल रहा हूँ...";
+
+addMsg(reply,"bot");
+
+lastReply =
+reply;
+
+speak(reply);
+
+setTimeout(function(){
+
+openApp(app);
+
+},300);
+
+return;
+
+}
+
+
+/* DATE */
+
+if(
+/तारीख|date|आज की date/i.test(q)
+){
+
+const reply =
+getDateAnswer();
+
+addMsg(reply,"bot");
+
+lastReply =
+reply;
+
+speak(reply);
+
+return;
+
+}
+
+
+/* TIME */
+
+if(
+/समय|time|टाइम|अभी कितना बजा/i.test(q)
+){
+
+const reply =
+getTimeAnswer();
+
+addMsg(reply,"bot");
+
+lastReply =
+reply;
+
+speak(reply);
+
+return;
+
+}
+
+
+/* CALCULATOR */
+
+const calc =
+calculator(q);
+
+if(calc){
+
+addMsg(calc,"bot");
+
+lastReply =
+calc;
+
+speak(calc);
+
+setNotice(
+"🧮 Calculation complete."
+);
+
+return;
+
+}
+
+
+/* WEATHER */
+
+if(
+/weather|मौसम|वेदर/i.test(q)
+){
+
+const reply =
+await weather(q);
+
+addMsg(reply,"bot");
+
+lastReply =
+reply;
+
+speak(reply);
+
+setNotice(
+"🌦️ Weather complete."
+);
+
+return;
+
+}
+
+
+/* AI */
+
+const key =
+localStorage.getItem(KEY);
+
+if(!key){
+
+const reply =
+"🤖 Gemini API key नहीं मिली। Settings ⚙ में अपनी Gemini API key डालें।";
+
+addMsg(reply,"bot");
+
+lastReply =
+reply;
+
+speak(reply);
+
+setNotice(
+"⚠️ पहले Settings ⚙ में Gemini API key डालें।"
+);
+
+return;
+
+}
+
+
+try{
+
+const answer =
+await askAI(q,key);
+
+addMsg(answer,"bot");
+
+lastReply =
+answer;
+
+speak(answer);
+
+setNotice(
+"🟢 Ready"
+);
+
+}catch(e){
+
+const reply =
+"❌ AI से reply नहीं मिला।\n\n" +
+e.message;
+
+addMsg(reply,"bot");
+
+lastReply =
+reply;
+
+speak(reply);
+
+setNotice(
+"🔴 AI Error"
+);
+
+}
 
 }
 
@@ -1909,7 +1948,9 @@ function(){
 
 if(!wakeActive){
 
-setNotice("🟢 Ready");
+setNotice(
+"🟢 Ready"
+);
 
 }
 
@@ -2047,7 +2088,9 @@ function(){
 
 if(wakeActive){
 
-clearTimeout(wakeRestartTimer);
+clearTimeout(
+wakeRestartTimer
+);
 
 wakeRestartTimer =
 setTimeout(
@@ -2065,7 +2108,9 @@ function(){
 
 if(wakeActive){
 
-clearTimeout(wakeRestartTimer);
+clearTimeout(
+wakeRestartTimer
+);
 
 wakeRestartTimer =
 setTimeout(
@@ -2091,8 +2136,9 @@ function stopWakeWord(){
 
 wakeActive = false;
 
-clearTimeout(wakeRestartTimer);
-
+clearTimeout(
+wakeRestartTimer
+);
 
 try{
 
@@ -2203,8 +2249,10 @@ const pureBase64 =
 base64.split(",")[1];
 
 
+/* FIXED MODEL */
+
 const model =
-"gemini-2.5-flash";
+"gemini-3.5-flash-lite";
 
 
 const url =
@@ -2224,17 +2272,13 @@ role:"user",
 parts:[
 
 {
-text:
-question
+text:question
 },
 
 {
 inline_data:{
-mime_type:
-file.type,
-
-data:
-pureBase64
+mime_type:file.type,
+data:pureBase64
 }
 }
 
@@ -2337,16 +2381,15 @@ FILE TO BASE64
 
 function fileToBase64(file){
 
-return new Promise(function(resolve,reject){
+return new Promise(
+function(resolve,reject){
 
 const reader =
 new FileReader();
 
 reader.onload =
 function(){
-
 resolve(reader.result);
-
 };
 
 reader.onerror =
@@ -2383,10 +2426,14 @@ return {};
 
 function saveContacts(c){
 
+try{
+
 localStorage.setItem(
 CONTACT_KEY,
 JSON.stringify(c)
 );
+
+}catch(e){}
 
 }
 
@@ -2531,8 +2578,7 @@ APP ICON
 
 try{
 
-const svg =
-`
+const svg = `
 <svg xmlns="http://www.w3.org/2000/svg"
 viewBox="0 0 512 512">
 
@@ -2594,10 +2640,7 @@ const favicon =
 document.createElement("link");
 
 favicon.rel = "icon";
-
-favicon.type =
-"image/svg+xml";
-
+favicon.type = "image/svg+xml";
 favicon.href = icon;
 
 document.head.appendChild(favicon);
